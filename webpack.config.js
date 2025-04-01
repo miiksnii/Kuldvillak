@@ -1,16 +1,16 @@
-// webpack.config.mjs
 import path from 'path';
 import { fileURLToPath } from 'url';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
 
-// Needed because `__dirname` is not available in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log(__dirname);
-
 export default {
+  mode: 'development',
+  entry: './src/index.js',
   output: {
-    filename: 'my-first-webpack.bundle.js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
@@ -19,11 +19,33 @@ export default {
     },
     compress: true,
     port: 9000,
-    open:true
+    hot: true,
+    open: true,
+    watchFiles: ['src/**/*'],
   },
   module: {
     rules: [
-
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
     ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html', // Ensure this path is correct
+    }),
+    new VueLoaderPlugin(), // Moved inside the single plugins array
+  ],
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
   },
 };
