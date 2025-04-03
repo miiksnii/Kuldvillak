@@ -5,13 +5,9 @@ import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
 
 </script>
 <template>
-  
-  <section class="hero is-fullheight">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <DisplayKuldvillak></DisplayKuldvillak>
-    </div>
+
+  <div class="container is-flex is-justify-content-center is-align-items-center" style="height: 100vh;">
+    <DisplayKuldvillak></DisplayKuldvillak>
   </div>
-</section>
 
 </template>

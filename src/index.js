@@ -1,4 +1,5 @@
-import 'bulma/css/bulma.min.css'; // ✅ Now valid
+import 'bulma/css/bulma.min.css';
+
 // Import Vue and the main App component
 import { createApp } from 'vue';  // Importing createApp from Vue
 import App from './App.vue';
