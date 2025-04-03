@@ -8,11 +8,14 @@ const emit = defineEmits(['isModalActive']);
 <template>
     <Modal :active="active" @isModalActive="e => emit('isModalActive', e)">
         <template #header>
-            <p class="modal-card-title"></p>
+            <button class="button is-primary my-2">
+                Show answer
+            </button>
+            <span class="is-size-7">or press space</span>
         </template>
         <template #body>
-            <p>Main content goes here</p>
-            <button class="button">Click me</button>
+            <p class="is-size-3 has-text-black m-2 p-3">{{ questionObj.question }}</p>
+
         </template>
         <template #footer>
         </template>
