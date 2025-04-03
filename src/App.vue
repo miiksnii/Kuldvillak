@@ -1,13 +1,17 @@
 <script setup>
 
-import DisplayKuldvillak from './DisplayKuldvillak.vue';
+import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
 
 
 </script>
 <template>
   
-  <div class="content is-flex is-justify-content-center is-align-items-center">
-    <DisplayKuldvillak></DisplayKuldvillak>
+  <section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <DisplayKuldvillak></DisplayKuldvillak>
+    </div>
   </div>
+</section>
 
 </template>
