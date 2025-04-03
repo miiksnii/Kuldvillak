@@ -75,12 +75,12 @@ function showModal(question) {
 
     <div class="column kuldvillak-data" v-for="data in kuldvillak_data" :key="data.id">
       <div class="header box">
-        <p class="header-text has-text-centered is-size-3">Hello I am Kaspar Bergert</p>
+        <p class="header-text is-text-center my-2 py-2 py-5">Hello I am Kaspar Bergert</p>
       </div>
 
       <div class="numbered-cards">
         <!-- when the card is clicked shows a modal window -->
-        <div class="numbered-card is-size-4 is-text-center my-5 py-2 py-2" v-for="question, index in data.questionsList"
+        <div class="numbered-card is-size-2 is-text-center my-2 py-2 py-5" v-for="question, index in data.questionsList"
           :key="question.id" @click="showModal(data)">
           ${{ (index + 1) * 100 }}
         </div>
@@ -90,10 +90,6 @@ function showModal(question) {
     <div class="modal" :class="{ 'is-active': isModalActive }">
       <div class="modal-background" @click="isModalActive.value = false"></div>
       <div class="modal-content">
-        <!-- Any other Bulma elements you want -->
-        <div>
-          Hello world
-        </div>
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
@@ -102,22 +98,26 @@ function showModal(question) {
 </template>
 <style scoped>
 .header {
-  background-color: #003380;
-  color: white
+  background-color: #2f90ff;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size:0.8cm;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .numbered-card {
-  background-color: #003E9A;
-  border-radius: 5px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: #2ca0ffbd;
+  border-radius: 10px;
   text-align: center;
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s cubic-bezier(0.1, 3, 0.9, 1);
-  color: white
+  color: rgb(255, 255, 255)
 }
 
 .numbered-card:hover {
-  background-color: #315a97;
+  background-color: #2f90ff;
   transform: scale(1.05);
 }
 
