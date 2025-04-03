@@ -1,7 +1,7 @@
 <script setup>
 import Tabs from './components/Tabs.vue';
-import Login from './pages/Login.vue';
-import SignIn from './pages/SignIn.vue';
+import Login from './components/Login.vue';
+import SignIn from './components/SignIn.vue';
 
 const tabItems = [
   { name: "Login", component: Login },
@@ -13,9 +13,13 @@ const tabItems = [
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <Tabs :tabs="tabItems"></Tabs>
         <router-view></router-view>
+        <Tabs :tabs="tabItems"></Tabs>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+
+</style>

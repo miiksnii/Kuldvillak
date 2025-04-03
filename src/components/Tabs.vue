@@ -10,7 +10,7 @@ const activeTab = ref(0);
 
 <template>
     <div>
-        <div class="tabs is-centered">
+        <div class="tabs">
             <ul>
                 <li v-for="(tab, index) in tabs" :key="index" :class="{ 'is-active': activeTab === index }"
                     @click="activeTab = index">

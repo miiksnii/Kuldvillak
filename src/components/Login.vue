@@ -21,3 +21,5 @@
         </p>
     </div>
 </template>
+
+<style scoped></style>

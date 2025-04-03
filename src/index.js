@@ -4,13 +4,14 @@ import { createApp } from 'vue';  // Importing createApp from Vue
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import RegPage from "./pages/RegPage.vue";
-import Login from "./pages/Login.vue";
-import SignIn from "./pages/SignIn.vue";
+import Main from './pages/Main.vue';
+
+import Login from "./components/Login.vue";
+import SignIn from "./components/SignIn.vue";
 import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
 
 const routes = [
-    { path: '/', component: RegPage },
+    { path: '/', component: Main },
     { path: '/Login', component: Login },
     { path: '/SignIn', component: SignIn },
     { path: '/kuldvillak', component: DisplayKuldvillak },
