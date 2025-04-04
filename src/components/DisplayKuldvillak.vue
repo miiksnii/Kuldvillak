@@ -110,6 +110,20 @@ function decreasePoints(player) {
     </QuizModal>
 
   </div>
+
+  <div class="bottom-container">
+      <div class="name-box" v-for="player in players" :key="player.name">
+        <div>{{ player.name }}</div>
+        <div class="points-box">
+          {{ player.points }}
+        </div>
+        <div class="buttons">
+          <button @click="decreasePoints(player)">-</button>
+          <button @click="increasePoints(player)">+</button>
+        </div>
+      </div>
+    </div>
+
 </template>
 <style scoped>
 .header {
@@ -137,7 +151,7 @@ function decreasePoints(player) {
 }
 
 .columns {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 450px);
 }
 
 .kuldvillak-data {
