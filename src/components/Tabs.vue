@@ -16,15 +16,13 @@ console.log(router.getRoutes(), route);
 </script>
 
 <template>
-    <div>
-        <div class="tabs is-centered">
-            <ul>
-                <li v-for="(item) in $router.getRoutes()" :key="item.path"
-                    :class="{ 'is-active': activeTab === item.path }" @click="activeTab = item.path">
-                    <RouterLink :to="item.path">{{ item.name }}</RouterLink>
-                </li>
-            </ul>
-        </div>
+    <div class="tabs is-centered">
+        <ul>
+            <li v-for="(item) in $router.getRoutes()" :key="item.path" :class="{ 'is-active': activeTab === item.path }"
+                @click="activeTab = item.path">
+                <RouterLink :to="item.path">{{ item.name }}</RouterLink>
+            </li>
+        </ul>
     </div>
 </template>
 

@@ -12,10 +12,10 @@ import SignIn from "./components/SignIn.vue";
 import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
 
 const routes = [
-    { path: '/', component: DisplayKuldvillak },
-    { path: '/Login', component: Login },
-    { path: '/SignIn', component: SignIn },
-    { path: '/kuldvillak', component: DisplayKuldvillak },
+    { path: '/', component: Main, name: "default" },
+    { path: '/Login', component: Login, name: "Login" },
+    { path: '/SignIn', component: SignIn, name: "Sign in" },
+    { path: '/kuldvillak', component: DisplayKuldvillak, name: "kuldvillak" },
 ];
 
 const router = createRouter({
