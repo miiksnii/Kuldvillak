@@ -65,9 +65,26 @@ const kuldvillak_data = [
   },
 ];
 
+
+
 function showModal(questionObj) {
   isModalActive.value = true;
   ModalQuestion = questionObj;
+}
+
+const players = ref([
+  { name: "Kaspar", points: 0 },
+  { name: "Tauri", points: 0 },
+  { name: "Martin", points: 0 },
+  { name: "Kaupo", points: 0 },
+]);
+
+function increasePoints(player) {
+  player.points += 100; 
+}
+
+function decreasePoints(player) {
+  player.points -= 100; 
 }
 
 </script>
@@ -77,12 +94,12 @@ function showModal(questionObj) {
   <div class="columns">
     <div class="column kuldvillak-data" v-for="data in kuldvillak_data" :key="data.id">
       <div class="header box">
-        <p class="header-text has-text-centered is-size-3">{{ data.topic }}</p>
+        <p class="header-text is-text-center my-2 py-2 py-5">{{ data.topic }}</p>
       </div>
 
       <div class="numbered-cards">
-        <!-- when the card is clicked shows a modal window -->
-        <div class="numbered-card is-size-4 is-text-center my-5 py-2 py-2" v-for="question, index in data.questionsList"
+        <div class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
+         v-for="question, index in data.questionsList"
           :key="question.id" @click="showModal(question)">
           ${{ (index + 1) * 100 }}
         </div>
@@ -96,37 +113,89 @@ function showModal(questionObj) {
 </template>
 <style scoped>
 .header {
-  background-color: #003380;
-  color: white
+  background-color: #2f90ff;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 0.8cm;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .numbered-card {
-  background-color: #003E9A;
-  border-radius: 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: #2ca0ffbd;
+  border-radius: 10px;
   text-align: center;
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s cubic-bezier(0.1, 3, 0.9, 1);
-  color: white
+  color: rgb(255, 255, 255);
 }
 
 .numbered-card:hover {
-  background-color: #315a97;
+  background-color: #2f90ff;
   transform: scale(1.05);
 }
 
 .columns {
-  height: 100vh;
+  height: calc(100vh - 100px);
 }
 
 .kuldvillak-data {
   height: fit-content;
 }
 
-.modal-shape {
-  background-color: white;
-  width: 20%;
-  height: 10%;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 11%;
+}
 
+.bottom-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  font-size: 50px;
+}
+
+.name-box {
+  background-color: #ffffffbd;
+  border-radius: 8px;
+  padding: 15px;
+  padding-top: 0px;
+  text-align: center;
+}
+
+.points-box {
+  background-color: #4141413b;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #2ca0ffbd;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  color: white;
+  font-size:30px;
+  font-weight:900;
+  text-align: center;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+button:hover {
+  background-color: #2f90ff;
 }
 </style>
