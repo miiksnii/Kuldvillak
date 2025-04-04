@@ -5,17 +5,14 @@ import { createApp } from 'vue';  // Importing createApp from Vue
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Main from './pages/Main.vue';
-
 import Login from "./components/Login.vue";
 import SignIn from "./components/SignIn.vue";
-import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
+import Kuldvillak from './pages/Kuldvillak.vue';
 
 const routes = [
-    { path: '/', component: Main, name: "default" },
-    { path: '/Login', component: Login, name: "Login" },
+    { path: '/', component: Login, name: "Login" },
     { path: '/SignIn', component: SignIn, name: "Sign in" },
-    { path: '/kuldvillak', component: DisplayKuldvillak, name: "kuldvillak" },
+    { path: '/kuldvillak', component: Kuldvillak, name: "kuldvillak" },
 ];
 
 const router = createRouter({
