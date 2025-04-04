@@ -25,7 +25,7 @@ function toggleAnswer() {
 
             <div style="margin-left: auto;">
                 <button style="margin-left: auto;" class="button is-danger is-outlined"
-                    @click="() => { emit('isModalActive', e); }">
+                    @click="() => { emit('isModalActive', e); isAnswerShown = false }">
                     <span>Close</span>
                     <span class="icon is-small ml-2">
                         <i class="fas fa-times"></i>
