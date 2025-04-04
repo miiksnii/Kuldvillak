@@ -1,11 +1,6 @@
 <script setup>
 
-import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
 import Tabs from './components/Tabs.vue'
-
-import Kuldvillak from './components/DisplayKuldvillak.vue'
-
-
 
 </script>
 
