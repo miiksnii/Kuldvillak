@@ -3,7 +3,7 @@ import 'bulma/css/bulma.min.css';
 // Import Vue and the main App component
 import { createApp } from 'vue';  // Importing createApp from Vue
 import App from './App.vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 import Main from './pages/Main.vue';
 
@@ -19,8 +19,11 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
+    server: {
+        historyApiFallback: true  // Add this line
+    }
 });
 
 const app = createApp(App);  // Creating the Vue app with the App component
