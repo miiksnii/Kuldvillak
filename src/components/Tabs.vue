@@ -25,6 +25,4 @@ const activeTab = ref(0);
     </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

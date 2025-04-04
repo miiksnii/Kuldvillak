@@ -7,17 +7,16 @@ import Tabs from './components/Tabs.vue';
 import Login from './components/Login.vue';
 import SignIn from './components/SignIn.vue';
 
+import Kuldvillak from './components/DisplayKuldvillak.vue'
+
 const tabItems = [
   { name: "Login", component: Login },
   { name: "Sign In", component: SignIn },
+  { name: "Kuldvillak", component: Kuldvillak },
 ];
 </script>
 
 <template>
-  <div class="container is-flex is-justify-content-center is-align-items-center" style="height: 100vh;">
-    <DisplayKuldvillak></DisplayKuldvillak>
-  </div>
-
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container has-text-centered">
