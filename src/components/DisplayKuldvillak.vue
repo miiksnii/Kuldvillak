@@ -89,7 +89,8 @@ function showModal(questionObj) {
       </div>
     </div>
 
-    <QuizModal :questionObj="ModalQuestion" :active="isModalActive" @isModalActive="e => isModalActive = e"></QuizModal>
+    <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive" @isModalActive="e => isModalActive = e">
+    </QuizModal>
 
   </div>
 </template>
