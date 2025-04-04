@@ -62,6 +62,21 @@ const kuldvillak_data = [
   },
 ];
 
+const players = ref([
+  { name: "Kaspar", points: 0 },
+  { name: "Tauri", points: 0 },
+  { name: "Martin", points: 0 },
+  { name: "Kaupo", points: 0 },
+]);
+
+function increasePoints(player) {
+  player.points += 100; 
+}
+
+function decreasePoints(player) {
+  player.points -= 100; 
+}
+
 function showModal(question) {
   isModalActive.value = true;
 }
@@ -77,29 +92,35 @@ function showModal(question) {
 
         <div class="numbered-cards">
           <div class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
-            v-for="question, index in data.questionsList" :key="question.id" @click="showModal(data)">
+            v-for="(question, index) in data.questionsList" :key="question.id" @click="showModal(data)">
             ${{ (index + 1) * 100 }}
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Modal -->
-      <div class="modal" :class="{ 'is-active': isModalActive }">
-        <div class="modal-background" @click="isModalActive.value = false"></div>
-        <div class="modal-content">
+    <div class="bottom-container">
+      <div class="name-box" v-for="player in players" :key="player.name">
+        <div>{{ player.name }}</div>
+        <div class="points-box">
+          {{ player.points }}
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <div class="buttons">
+          <button @click="decreasePoints(player)">-</button>
+          <button @click="increasePoints(player)">+</button>
+        </div>
       </div>
     </div>
 
-    <!-- Bottom section for names -->
-    <div class="bottom-names">
-      <div class="name-box" v-for="name in ['Kaspar', 'Tauri', 'Martin']" :key="name">
-        {{ name }}
+    <div class="modal" :class="{ 'is-active': isModalActive }">
+      <div class="modal-background" @click="isModalActive.value = false"></div>
+      <div class="modal-content">
       </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .header {
@@ -128,7 +149,6 @@ function showModal(question) {
 
 .columns {
   height: calc(100vh - 100px);
-  /* Adjust height to leave space for bottom section */
 }
 
 .kuldvillak-data {
@@ -142,20 +162,51 @@ function showModal(question) {
   padding-top: 11%;
 }
 
-
-.bottom-names {
+.bottom-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 10px;
   font-size: 50px;
-  
 }
 
 .name-box {
   background-color: #ffffffbd;
   border-radius: 8px;
+  padding: 15px;
+  padding-top: 0px;
+  text-align: center;
+}
+
+.points-box {
+  background-color: #4141413b;
+  border-radius: 8px;
   padding: 10px;
   text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #2ca0ffbd;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  color: white;
+  font-size:30px;
+  font-weight:900;
+  text-align: center;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+button:hover {
+  background-color: #2f90ff;
 }
 </style>
