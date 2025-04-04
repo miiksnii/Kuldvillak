@@ -174,11 +174,12 @@ function decreasePoints(player) {
 }
 
 .name-box {
-  background-color: #ffffffbd;
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 15px;
   padding-top: 0px;
   text-align: center;
+  z-index: 99;
 }
 
 .points-box {
