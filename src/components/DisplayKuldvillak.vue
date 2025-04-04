@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-let id = 1; // Initialize counter
+let id = 1;
 let isModalActive = ref(false);
 
 const kuldvillak_data = [
