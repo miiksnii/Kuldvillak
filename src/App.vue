@@ -1,4 +1,8 @@
 <script setup>
+ 
+import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
+ 
+ 
 import Tabs from './components/Tabs.vue';
 import Login from './components/Login.vue';
 import SignIn from './components/SignIn.vue';
@@ -10,6 +14,12 @@ const tabItems = [
 </script>
 
 <template>
+  <div class="container is-flex is-justify-content-center is-align-items-center" style="height: 100vh;">
+    <DisplayKuldvillak></DisplayKuldvillak>
+  </div>
+</template>
+ 
+
 
   <div class="container is-flex is-justify-content-center is-align-items-center" style="height: 100vh;">
     <DisplayKuldvillak></DisplayKuldvillak>
@@ -28,3 +38,4 @@ const tabItems = [
 <style scoped>
 
 </style>
+

@@ -24,5 +24,6 @@ const router = createRouter({
 });
 
 const app = createApp(App);  // Creating the Vue app with the App component
+
 app.use(router);
 app.mount('#app');  // Mounting Vue to the element with the id 'app'
