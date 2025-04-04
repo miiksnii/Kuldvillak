@@ -12,7 +12,7 @@ import SignIn from "./components/SignIn.vue";
 import DisplayKuldvillak from './components/DisplayKuldvillak.vue';
 
 const routes = [
-    { path: '/', component: Main },
+    { path: '/', component: DisplayKuldvillak },
     { path: '/Login', component: Login },
     { path: '/SignIn', component: SignIn },
     { path: '/kuldvillak', component: DisplayKuldvillak },

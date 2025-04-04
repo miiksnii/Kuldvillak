@@ -1,26 +1,29 @@
 <script setup>
 import { ref } from 'vue';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 
-defineProps({
-    tabs: Array,
-});
+import Login from './Login.vue';
+import SignIn from './SignIn.vue';
+
+const router = useRouter();
+const route = useRoute();
+
 
 const activeTab = ref(0);
+
+console.log(router.getRoutes(), route);
+
 </script>
 
 <template>
     <div>
-        <div class="tabs">
+        <div class="tabs is-centered">
             <ul>
-                <li v-for="(tab, index) in tabs" :key="index" :class="{ 'is-active': activeTab === index }"
-                    @click="activeTab = index">
-                    <a>{{ tab.name }}</a>
+                <li v-for="(item) in $router.getRoutes()" :key="item.path"
+                    :class="{ 'is-active': activeTab === item.path }" @click="activeTab = item.path">
+                    <RouterLink :to="item.path">{{ item.name }}</RouterLink>
                 </li>
             </ul>
-        </div>
-
-        <div class="tab-content">
-            <component :is="tabs[activeTab].component"></component>
         </div>
     </div>
 </template>
