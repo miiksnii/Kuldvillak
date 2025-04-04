@@ -20,8 +20,8 @@ function Register() {
         return;
     }
     
-    localStorage.setItem('username', username.value);
-    localStorage.setItem('password', password.value);
+    sessionStorage.setItem('username', username.value);
+    sessionStorage.setItem('password', password.value);
     
     message.value = 'Account successfully created!';
 }

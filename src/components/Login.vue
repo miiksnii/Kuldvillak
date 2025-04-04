@@ -5,8 +5,8 @@ const loginUsername = ref('');
 const loginPassword = ref('');
 const message = ref('');
 
-const storedUsername = localStorage.getItem('username');
-const storedPassword = localStorage.getItem('password');
+const storedUsername = sessionStorage.getItem('username');
+const storedPassword = sessionStorage.getItem('password');
 
 function login() {
     if (loginUsername.value === storedUsername && loginPassword.value === storedPassword) {
