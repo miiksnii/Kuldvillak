@@ -18,19 +18,19 @@ function toggleAnswer() {
         <template #header class="is-flex">
 
             <div style="margin-right: 100px;">
-                <button style="margin-right:auto;" class="button is-primary my-2" @click="toggleAnswer()">
+                <button style="margin-right:auto;" class="button is-primary my-1" @click="toggleAnswer()">
                     Show answer
                 </button>
             </div>
 
             <div style="margin-left: auto;">
-                <button style="margin-left: auto;" class="button is-danger is-outlined"
+                <div style="margin-left: auto; transform: scale(1.2);" class="button is-danger is-outlined"
                     @click="() => { emit('isModalActive', e); isAnswerShown = false }">
                     <span>Close</span>
                     <span class="icon is-small ml-2">
                         <i class="fas fa-times"></i>
                     </span>
-                </button>
+                </div>
             </div>
 
         </template>
@@ -50,4 +50,19 @@ function toggleAnswer() {
     </Modal>
 </template>
 
-<style></style>
+<style scoped>
+button {
+  background-color: #2ca0ffbd;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-size:23px;
+  text-align: center;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: #2f90ff;
+}
+</style>
