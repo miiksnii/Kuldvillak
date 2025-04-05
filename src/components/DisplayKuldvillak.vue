@@ -91,7 +91,7 @@ function decreasePoints(player) {
 
 <template>
 
-  <div class="columns">
+  <div class="columns" style="transform: scale(0.85);">
     <div class="column kuldvillak-data" v-for="data in kuldvillak_data" :key="data.id">
       <div class="header box">
         <p class="header-text is-text-center my-2 py-2 py-5">{{ data.topic }}</p>
@@ -105,12 +105,11 @@ function decreasePoints(player) {
         </div>
       </div>
     </div>
-
-    <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive" @isModalActive="e => isModalActive = e">
-    </QuizModal>
-
   </div>
-
+  
+  <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive" @isModalActive="e => isModalActive = e">
+  </QuizModal>
+<!--
   <div class="bottom-container" style="transform: scale(0.75)">
       <div class="name-box" v-for="player in players" :key="player.name">
         <div>{{ player.name }}</div>
@@ -123,6 +122,8 @@ function decreasePoints(player) {
         </div>
       </div>
     </div>
+-->
+
 
 </template>
 <style scoped>

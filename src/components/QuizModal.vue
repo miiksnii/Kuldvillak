@@ -34,9 +34,11 @@ function toggleAnswer() {
             </div>
 
         </template>
+        
         <template #body>
             <p class="is-size-3 has-text-black m-2 p-3">{{ ModalQuestion.question }}</p>
         </template>
+
         <template #footer>
 
             <div class="has-text-centered">

@@ -6,6 +6,3 @@ import DisplayKuldvillak from '../components/DisplayKuldvillak.vue';
     <DisplayKuldvillak></DisplayKuldvillak>
 </template>
 
-<style scoped>
-
-</style>

@@ -8,7 +8,7 @@ const emit = defineEmits(['isModalActive']);
 <template>
     <div class="modal" :class="{ 'is-active': props.active }">
         <div class="modal-background" @click="emit('isModalActive', false)"></div>
-        <div class="modal-card" style="width: 40vw; max-width: 90vw;">
+        <div class="modal-card">
             <header class="modal-card-head">
                 <slot name="header"></slot>
             </header>
