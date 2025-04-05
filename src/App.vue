@@ -5,15 +5,14 @@ import Tabs from './components/Tabs.vue'
 </script>
 
 <template>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <Tabs></Tabs>
-        <router-view></router-view>
-      </div>
+  <section class="section is-fullheight has-text-centered">
+    <div class="container">
+      <Tabs></Tabs>
+      <router-view></router-view>
     </div>
   </section>
 </template>
+
 
 
 
