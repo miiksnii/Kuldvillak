@@ -13,7 +13,7 @@ console.log(router.getRoutes(), route);
 <template>
   <div class="tabs is-centered">
     <ul>
-      <li v-for="(item, index) in tabItems" :key="item.path" 
+      <li v-for="(item, index) in $router.getRoutes()" :key="item.path" 
           :class="{ 'is-active': activeTab === index }" 
           @click="activeTab = index">
         <RouterLink :to="item.path">{{ item.name }}</RouterLink>
