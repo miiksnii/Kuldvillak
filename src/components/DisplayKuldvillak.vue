@@ -111,7 +111,7 @@ function decreasePoints(player) {
 
   </div>
 
-  <div class="bottom-container">
+  <div class="bottom-container" style="transform: scale(0.75)">
       <div class="name-box" v-for="player in players" :key="player.name">
         <div>{{ player.name }}</div>
         <div class="points-box">

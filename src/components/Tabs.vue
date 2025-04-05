@@ -4,13 +4,8 @@ import { RouterLink, useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
 const route = useRoute();
-
-const tabItems = [
-  { name: "Login", path: "/" },
-  { name: "Sign In", path: "/SignIn" },
-];
-
 const activeTab = ref(0);
+
 
 console.log(router.getRoutes(), route);
 </script>
