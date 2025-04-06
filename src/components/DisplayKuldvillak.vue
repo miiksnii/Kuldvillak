@@ -2,99 +2,25 @@
 import { ref } from 'vue';
 import QuizModal from './QuizModal.vue';
 
+const props = defineProps(['kuldvillak_data'])
 
-let id = 1; // Initialize counter
+
 let isModalActive = ref(false);
 let ModalQuestion = ref('');
-
-const kuldvillak_data = [
-  {
-    id: id++,
-    topic: "About Kaspar Bergert",
-    questionsList: [
-      { id: id++, question: "What is Kaspar's favorite programming language?", answer: "No answer" },
-      { id: id++, question: "How many years has Kaspar been coding?", answer: "No answer" },
-      { id: id++, question: "What framework does Kaspar specialize in?", answer: "No answer" },
-      { id: id++, question: "What's Kaspar's strongest technical skill?", answer: "No answer" },
-      { id: id++, question: "What type of projects does Kaspar enjoy most?", answer: "No answer" }
-    ]
-  },
-  {
-    id: id++,
-    topic: "About Kaspar Bergert",
-    questionsList: [
-      { id: id++, question: "What is Kaspar's favorite programming language?", answer: "No answer" },
-      { id: id++, question: "How many years has Kaspar been coding?", answer: "No answer" },
-      { id: id++, question: "What framework does Kaspar specialize in?", answer: "No answer" },
-      { id: id++, question: "What's Kaspar's strongest technical skill?", answer: "No answer" },
-      { id: id++, question: "What type of projects does Kaspar enjoy most?", answer: "No answer" }
-    ]
-  },
-  {
-    id: id++,
-    topic: "About Kaspar Bergert",
-    questionsList: [
-      { id: id++, question: "What is Kaspar's favorite programming language?", answer: "No answer" },
-      { id: id++, question: "How many years has Kaspar been coding?", answer: "No answer" },
-      { id: id++, question: "What framework does Kaspar specialize in?", answer: "No answer" },
-      { id: id++, question: "What's Kaspar's strongest technical skill?", answer: "No answer" },
-      { id: id++, question: "What type of projects does Kaspar enjoy most?", answer: "No answer" }
-    ]
-  },
-  {
-    id: id++,
-    topic: "About Kaspar Bergert",
-    questionsList: [
-      { id: id++, question: "What is Kaspar's favorite programming language?", answer: "No answer" },
-      { id: id++, question: "How many years has Kaspar been coding?", answer: "No answer" },
-      { id: id++, question: "What framework does Kaspar specialize in?", answer: "No answer" },
-      { id: id++, question: "What's Kaspar's strongest technical skill?", answer: "No answer" },
-      { id: id++, question: "What type of projects does Kaspar enjoy most?", answer: "No answer" }
-    ]
-  },
-  {
-    id: id++,
-    topic: "Test",
-    questionsList: [
-      { id: id++, question: "", answer: "No answer" },
-      { id: id++, question: "How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?How many years has Kaspar been coding?", answer: "No answer" },
-      { id: id++, question: "What framework ", answer: "No answer" },
-      { id: id++, question: "What's Kaspar's strongest ", answer: "No answer" },
-      { id: id++, question: "What type of projects does Kaspar enjoy most?10284702471204175612038738756123084716239587123695)/T #7r39719", answer: "No answer" }
-    ]
-  },
-];
-
-
 
 function showModal(questionObj) {
   isModalActive.value = true;
   ModalQuestion = questionObj;
 }
 
-const players = ref([
-  { name: "Kaspar", points: 0 },
-  { name: "Tauri", points: 0 },
-  { name: "Martin", points: 0 },
-  { name: "Kaupo", points: 0 },
-]);
-
-function increasePoints(player) {
-  player.points += 100; 
-}
-
-function decreasePoints(player) {
-  player.points -= 100; 
-}
 
 </script>
 
 <template>
-
-  <div class="columns" style="transform: scale(0.85);">
+  <div class="columns">
     <div class="column kuldvillak-data" v-for="data in kuldvillak_data" :key="data.id">
       <div class="header box">
-        <p class="header-text is-text-center my-2 py-2 py-5">{{ data.topic }}</p>
+        <p class="header-text is-text-center my-2 py-2 py-5 is-size-4">{{ data.topic }}</p>
       </div>
 
       <div class="numbered-cards">
@@ -104,35 +30,21 @@ function decreasePoints(player) {
           ${{ (index + 1) * 100 }}
         </div>
       </div>
-    </div>
+    </div> 
   </div>
-  
+
   <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive" @isModalActive="e => isModalActive = e">
   </QuizModal>
-<!--
-  <div class="bottom-container" style="transform: scale(0.75)">
-      <div class="name-box" v-for="player in players" :key="player.name">
-        <div>{{ player.name }}</div>
-        <div class="points-box">
-          {{ player.points }}
-        </div>
-        <div class="buttons">
-          <button @click="decreasePoints(player)">-</button>
-          <button @click="increasePoints(player)">+</button>
-        </div>
-      </div>
-    </div>
--->
 
 
 </template>
 <style scoped>
 .header {
   background-color: #2f90ff;
-  color: rgb(255, 255, 255);
   font-weight: 600;
-  font-size: 0.8cm;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  user-select: none;
+  color: white;
 }
 
 .numbered-card {

@@ -24,4 +24,3 @@ const emit = defineEmits(['isModalActive']);
     </div>
 </template>
 
-<style scoped></style>
