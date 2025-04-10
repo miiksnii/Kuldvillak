@@ -1,38 +1,36 @@
 <script setup>
+import { reactive, watch } from 'vue';
 
 const props = defineProps(['players']);
+const STORAGE_KEY = 'players-points';
 
+const savedData = localStorage.getItem(STORAGE_KEY);
+const initialPlayers = savedData
+  ? JSON.parse(savedData)
+  : props.players.map(player => ({ ...player }));
 
+const localPlayers = reactive(initialPlayers);
 
 function increasePoints(player) {
-  player.points +=  100;
+  player.points += 100;
 }
 
 function decreasePoints(player) {
   player.points -= 100;
 }
 
+watch(
+  () => localPlayers,
+  (newVal) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newVal));
+  },
+  { deep: true }
+);
 </script>
 
 <template>
-  <slot></slot>
-
-  <!--
-    <div class="bottom-container" style="transform: scale(0.75)">
-      <div class="name-box" v-for="player in players" :key="player.name">
-        <div>{{ player.name }}</div>
-        <div class="points-box">
-          {{ player.points }}
-        </div>
-        <div class="buttons">
-          <button @click="decreasePoints(player)">-</button>
-          <button @click="increasePoints(player)">+</button>
-         </div>
-      </div>
-    </div>
-  -->
   <ol>
-    <li class="box" v-for="player in players" :key="player.name">
+    <li class="box" v-for="player in localPlayers" :key="player.name">
       <div>{{ player.name }}</div>
       <div>{{ player.points }}</div>
       <div>
@@ -41,8 +39,6 @@ function decreasePoints(player) {
       </div>
     </li>
   </ol>
-
-
 </template>
 
 <style scoped>
@@ -56,7 +52,7 @@ function decreasePoints(player) {
   background-color: #fbfeff;
   color: black;
   font-weight: bolder;
-  font-size:larger;
+  font-size: larger;
 }
 
 .box button {
@@ -67,7 +63,7 @@ function decreasePoints(player) {
   background-color: #2ca0ffbd;
   color: rgb(255, 255, 255);
   font-weight: 900;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   cursor: pointer;
 }
 
