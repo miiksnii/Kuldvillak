@@ -6,13 +6,12 @@ import Tabs from './components/Tabs.vue'
 
 <template>
   <section class="section is-fullheight has-text-centered">
-      <Tabs></Tabs>
-      <router-view></router-view>
+
+    <router-view></router-view>
   </section>
 </template>
 
 <style>
-
 button {
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
@@ -25,6 +24,4 @@ button:hover {
 button:active {
   transform: scale(0.95);
 }
-
-
 </style>
