@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue';
+import { defineEmits, defineProps } from 'vue';
 import QuizModal from './QuizModal.vue';
 
-const props = defineProps(['kuldvillak_data'])
+const props = defineProps(['kuldvillak_data']);
+const emit = defineEmits(['PointsForUser']);
 
 
 let isModalActive = ref(false);
@@ -16,6 +18,10 @@ function showModal(questionObj) {
 
 }
 
+function MakeCurrentPoints(points) {
+  console.log(points);
+  emit('PointsForUser', points); // points is not recieved by the parten node
+}
 
 </script>
 
@@ -29,7 +35,7 @@ function showModal(questionObj) {
       <div class="numbered-cards">
         <div class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
           :class="{ 'is-answered': isAnswered.includes(question.id) }" v-for="question, index in data.questionsList"
-          :key="question.id" @click="showModal(question)">
+          :key="question.id" @click="() => { showModal(question); MakeCurrentPoints(((index + 1) * 100)) }">
           ${{ (index + 1) * 100 }}
         </div>
       </div>
@@ -39,7 +45,6 @@ function showModal(questionObj) {
   <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive"
     @questionId="questionId => { isAnswered.push(questionId); }" @isModalActive="e => isModalActive = e">
   </QuizModal>
-
 
 </template>
 <style scoped>

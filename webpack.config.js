@@ -15,13 +15,15 @@ export default {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'src'),
+      directory: path.join(__dirname, 'dist'), // Serve only the built files
+      serveIndex: false, // Disable directory listing
     },
     compress: true,
     port: 9000,
     hot: true,
     open: true,
-    watchFiles: ['src/**/*'],
+    watchFiles: ['src/**/*'], // Watch for changes in src, but don't serve it
+    historyApiFallback: true, // Prevents path-based traversal in SPAs
   },
   module: {
     rules: [

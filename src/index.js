@@ -1,6 +1,4 @@
 import 'bulma/css/bulma.min.css';
-
-// Import Vue and the main App component
 import { createApp } from 'vue';  // Importing createApp from Vue
 import App from './App.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -9,21 +7,27 @@ import Login from "./components/Login.vue";
 import SignIn from "./components/SignIn.vue";
 import Kuldvillak from './pages/Kuldvillak.vue';
 
+// Define your routes
 const routes = [
     { path: '/', component: Login, name: "Login" },
     { path: '/SignIn', component: SignIn, name: "Sign in" },
-    { path: '/kuldvillak', component: Kuldvillak, name: "kuldvillak" },
+    {
+        path: '/kuldvillak',
+        component: Kuldvillak,
+        name: "kuldvillak",
+        meta: { requiresAuth: true } // Mark this route as requiring authentication
+    }
 ];
 
+
+
+
+// Create the router instance
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
-    server: {
-        historyApiFallback: true  // Add this line
-    }
 });
 
 const app = createApp(App);  // Creating the Vue app with the App component
-
-app.use(router);
-app.mount('#app');  // Mounting Vue to the element with the id 'app'
+app.use(router);  // Add the router to the app
+app.mount('#app');  // Mount the app to the DOM

@@ -1,29 +1,22 @@
 <script setup>
 
-import {ref, reactive} from 'vue';
+import { ref, reactive } from 'vue';
 import DisplayKuldvillak from '../components/DisplayKuldvillak.vue';
 import LeaderBoard from '../components/LeaderBoard.vue';
 
 
 
+
 const players = ref([
-  {name: "Kaspar", points: 0, },
-  {name: "Tauri", points: 0, },
-  {name: "Martin", points: 0, },
-  {name: "Kaupo2", points: 0, },
-  {name: "Kaupo2", points: 0, },
-  {name: "Kaupo2", points: 0, },
+  { name: "Kaspar", points: 0, },
+  { name: "Tauri", points: 0, },
+  { name: "Martin", points: 0, },
+  { name: "Kaupo", points: 0, },
 ]);
 
-let players_temp = players.value;
-let Playerid = ref(0);
+let pointsToAdd = ref();
 
-function refreshLeaderboard(){
-  
-
-}
-
-let id = 1; 
+let id = 1;
 // max topic length is 23 chars without newline.
 const kuldvillak_data = ref([
   {
@@ -61,35 +54,35 @@ const kuldvillak_data = ref([
   }
 ]);
 
+function handlePoints(e) {
+  pointsToAdd.value = e;
+}
+
 
 </script>
 
 
 <template>
-    <div class="main-window columns is-multiline">
+  <div class="main-window columns is-multiline">
 
-        <div class="column  is-one-quarter leaderboard">
-        <LeaderBoard :players="players" :refresh="refreshLeaderboard()"></LeaderBoard>
-        </div>  
-
-        <div class="column">
-        <DisplayKuldvillak :kuldvillak_data="kuldvillak_data"></DisplayKuldvillak>
-        </div>
+    <div class="column is-one-quarter leaderboard">
+      <LeaderBoard :players="players" :pointAmount="pointsToAdd"></LeaderBoard>
     </div>
+
+    <div class="column">
+      <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @PointsForUser="e => handlePoints(e)"></DisplayKuldvillak>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-
 .main-window {
-    display: inline-flex;
-    min-height: 100vh;
-    min-width: 90vw;
+  display: inline-flex;
+  min-height: 100vh;
+  min-width: 90vw;
 }
 
 .leaderboard {
-    max-width: 13vw;
+  max-width: 13vw;
 }
-
-
 </style>
-

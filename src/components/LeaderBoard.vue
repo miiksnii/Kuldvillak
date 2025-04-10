@@ -1,7 +1,7 @@
 <script setup>
-import { reactive, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 
-const props = defineProps(['players']);
+const props = defineProps(['players', 'pointAmount']);
 const STORAGE_KEY = 'players-points';
 
 const savedData = localStorage.getItem(STORAGE_KEY);
@@ -9,14 +9,15 @@ const initialPlayers = savedData
   ? JSON.parse(savedData)
   : props.players.map(player => ({ ...player }));
 
+let pointAmount = ref(100);
 const localPlayers = reactive(initialPlayers);
 
-function increasePoints(player) {
-  player.points += 100;
+function increasePoints(player, pointAmount) {
+  player.points += pointAmount;
 }
 
-function decreasePoints(player) {
-  player.points -= 100;
+function decreasePoints(player, pointAmount) {
+  player.points -= pointAmount;
 }
 
 watch(
@@ -34,8 +35,8 @@ watch(
       <div>{{ player.name }}</div>
       <div>{{ player.points }}</div>
       <div>
-        <button @click="decreasePoints(player)">-</button>
-        <button @click="increasePoints(player)">+</button>
+        <button @click="decreasePoints(player, props.pointAmount)">-</button>
+        <button @click="increasePoints(player, props.pointAmount)">+</button>
       </div>
     </li>
   </ol>
