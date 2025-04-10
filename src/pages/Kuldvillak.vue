@@ -1,17 +1,27 @@
 <script setup>
 
-import {ref} from 'vue';
+import {ref, reactive} from 'vue';
 import DisplayKuldvillak from '../components/DisplayKuldvillak.vue';
 import LeaderBoard from '../components/LeaderBoard.vue';
 
 
 
 const players = ref([
-  { name: "Kaspar", points: 0 },
-  { name: "Tauri", points: 0 },
-  { name: "Martin", points: 0 },
-  { name: "Kaupo", points: 0 },
+  {name: "Kaspar", points: 0, },
+  {name: "Tauri", points: 0, },
+  {name: "Martin", points: 0, },
+  {name: "Kaupo2", points: 0, },
+  {name: "Kaupo2", points: 0, },
+  {name: "Kaupo2", points: 0, },
 ]);
+
+let players_temp = players.value;
+let Playerid = ref(0);
+
+function refreshLeaderboard(){
+  
+
+}
 
 let id = 1; 
 // max topic length is 23 chars without newline.
@@ -59,7 +69,7 @@ const kuldvillak_data = ref([
     <div class="main-window columns is-multiline">
 
         <div class="column  is-one-quarter leaderboard">
-        <LeaderBoard :players="players"></LeaderBoard>
+        <LeaderBoard :players="players" :refresh="refreshLeaderboard()"></LeaderBoard>
         </div>  
 
         <div class="column">
