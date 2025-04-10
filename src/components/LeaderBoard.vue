@@ -5,7 +5,7 @@ const props = defineProps(['players']);
 
 
 function increasePoints(player) {
-  player.points += 100;
+  player.points +=  100;
 }
 
 function decreasePoints(player) {
@@ -49,27 +49,29 @@ function decreasePoints(player) {
 .box {
   padding: 1rem;
   margin: 0.5rem 0;
-  border: 1px solid #ccc;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #fbfeff;
   color: black;
   font-weight: bolder;
+  font-size:larger;
 }
 
 .box button {
   margin: 0 0.25rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 1.5rem;
   border: none;
   border-radius: 4px;
-  background-color: #3273dc;
-  color: white;
+  background-color: #2ca0ffbd;
+  color: rgb(255, 255, 255);
+  font-weight: 900;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   cursor: pointer;
 }
 
 .box button:hover {
-  background-color: #2759aa;
+  background-color: #2f90ff;
 }
 </style>
