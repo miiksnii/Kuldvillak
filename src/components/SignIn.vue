@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
 
+import Tabs from "./Tabs.vue";
+
 const username = ref('');
 const password = ref('');
 const confirmPassword = ref('');
@@ -19,15 +21,17 @@ function Register() {
         message.value = 'Passwords do not match';
         return;
     }
-    
+
     sessionStorage.setItem('username', username.value);
     sessionStorage.setItem('password', password.value);
-    
+
     message.value = 'Account successfully created!';
 }
 </script>
 
 <template>
+    <Tabs></Tabs>
+    <h1>Sign In</h1>
     <div class="field">
         <div class="control">
             <input id="usr" v-model="username" class="input" type="text" placeholder="Create username" />
@@ -40,7 +44,8 @@ function Register() {
     </div>
     <div class="field">
         <div class="control">
-            <input id="rpw" v-model="confirmPassword" class="input" type="password" placeholder="Re-enter your password" />
+            <input id="rpw" v-model="confirmPassword" class="input" type="password"
+                placeholder="Re-enter your password" />
         </div>
     </div>
     <div class="field">
@@ -56,6 +61,4 @@ function Register() {
     </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
