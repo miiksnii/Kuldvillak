@@ -7,10 +7,13 @@ const props = defineProps(['kuldvillak_data'])
 
 let isModalActive = ref(false);
 let ModalQuestion = ref('');
+let isAnswered = ref([]); //holds a list of answered modal questions
+
 
 function showModal(questionObj) {
   isModalActive.value = true;
   ModalQuestion = questionObj;
+
 }
 
 
@@ -25,20 +28,26 @@ function showModal(questionObj) {
 
       <div class="numbered-cards">
         <div class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
-         v-for="question, index in data.questionsList"
+          :class="{ 'is-answered': isAnswered.includes(question.id) }" v-for="question, index in data.questionsList"
           :key="question.id" @click="showModal(question)">
           ${{ (index + 1) * 100 }}
         </div>
       </div>
-    </div> 
+    </div>
   </div>
 
-  <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive" @isModalActive="e => isModalActive = e">
+  <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive"
+    @questionId="questionId => { isAnswered.push(questionId); }" @isModalActive="e => isModalActive = e">
   </QuizModal>
 
 
 </template>
 <style scoped>
+.is-answered {
+  background-color: gray !important;
+
+}
+
 .header {
   background-color: #2f90ff;
   font-weight: 600;
@@ -117,10 +126,10 @@ button {
   height: 50px;
   cursor: pointer;
   color: white;
-  font-size:30px;
-  font-weight:900;
+  font-size: 30px;
+  font-weight: 900;
   text-align: center;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 button:hover {
