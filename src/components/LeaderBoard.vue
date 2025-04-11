@@ -71,8 +71,8 @@ watch(
       </li>
     </ol>
     <div>
-      <button class="button" @click="removeLastPlayer">Remove Team</button>
-      <button class="button" @click="addPlayer">Add Team</button>
+      <button class="button button-remove" @click="removeLastPlayer">Remove Team</button>
+      <button class="button button-add" @click="addPlayer">Add Team</button>
     </div>
   </div>
 </template>
@@ -106,16 +106,24 @@ watch(
 .box button:hover {
   background-color: #2f90ff;
 }
-
-button {
+.button {
   padding: 8px 12px;
+  margin-left: 15px;
+  margin-right: 15px;
   background-color: #2ca0ffbd;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 16px;
   border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #6bff58;
+.button-add:hover {
+  background-color: #4caf50;
+}
+
+.button-remove:hover {
+  background-color: #f44336;
 }
 </style>
