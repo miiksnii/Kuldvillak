@@ -2,16 +2,18 @@
 import { reactive, ref, watch } from 'vue';
 
 const props = defineProps(['players', 'pointAmount']);
-const STORAGE_KEY = 'players-points-session'; 
+const STORAGE_KEY = 'players-points-session';
+const PLAYER_COUNTER_KEY = 'player-counter-session';
 
 const savedData = sessionStorage.getItem(STORAGE_KEY);
+const savedCounter = sessionStorage.getItem(PLAYER_COUNTER_KEY);
+
 const initialPlayers = savedData
-  ? JSON.parse(savedData) 
+  ? JSON.parse(savedData)
   : props.players.map(player => ({ ...player }));
 
 const localPlayers = reactive(initialPlayers);
-
-let playerCount = ref(localPlayers.length);
+const playerCounter = ref(savedCounter ? Number(savedCounter) : initialPlayers.length);
 
 function increasePoints(player, pointAmount) {
   player.points += pointAmount;
@@ -24,16 +26,28 @@ function decreasePoints(player, pointAmount) {
 }
 
 function addPlayer() {
-  playerCount.value++;
-  const newPlayer = { name: `Player ${playerCount.value}`, points: 0 };
+  playerCounter.value++;
+  const newPlayer = { name: `Player ${playerCounter.value}`, points: 0 };
   localPlayers.push(newPlayer);
   savePlayersToSession();
+  sessionStorage.setItem(PLAYER_COUNTER_KEY, playerCounter.value.toString());
+}
+
+function removeLastPlayer() {
+  if (localPlayers.length > 0) {
+    localPlayers.pop();
+    savePlayersToSession();
+  }
+
+  if (localPlayers.length === 0) {
+    playerCounter.value = 0;
+    sessionStorage.removeItem(PLAYER_COUNTER_KEY);
+  }
 }
 
 function savePlayersToSession() {
   sessionStorage.setItem(STORAGE_KEY, JSON.stringify(localPlayers));
 }
-
 watch(
   () => localPlayers,
   () => {
@@ -42,6 +56,7 @@ watch(
   { deep: true }
 );
 </script>
+
 
 <template>
   <div>
@@ -57,6 +72,7 @@ watch(
     </ol>
     <div>
       <button class="button" @click="addPlayer">+</button>
+      <button class="button" @click="removeLastPlayer">-</button>
     </div>
   </div>
 </template>
