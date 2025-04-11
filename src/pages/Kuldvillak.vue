@@ -6,13 +6,8 @@ import LeaderBoard from '../components/LeaderBoard.vue';
 
 
 
-
-const players = ref([
-  { name: "Kaspar", points: 0, },
-  { name: "Tauri", points: 0, },
-  { name: "Martin", points: 0, },
-  { name: "Kaupo", points: 0, },
-]);
+// Playerlist
+const players = ref([]);
 
 let pointsToAdd = ref();
 

@@ -2,43 +2,63 @@
 import { reactive, ref, watch } from 'vue';
 
 const props = defineProps(['players', 'pointAmount']);
-const STORAGE_KEY = 'players-points';
+const STORAGE_KEY = 'players-points-session'; 
 
-const savedData = localStorage.getItem(STORAGE_KEY);
+const savedData = sessionStorage.getItem(STORAGE_KEY);
 const initialPlayers = savedData
-  ? JSON.parse(savedData)
+  ? JSON.parse(savedData) 
   : props.players.map(player => ({ ...player }));
 
 const localPlayers = reactive(initialPlayers);
 
+let playerCount = ref(localPlayers.length);
+
 function increasePoints(player, pointAmount) {
   player.points += pointAmount;
+  savePlayersToSession();
 }
 
 function decreasePoints(player, pointAmount) {
   player.points -= pointAmount;
+  savePlayersToSession();
+}
+
+function addPlayer() {
+  playerCount.value++;
+  const newPlayer = { name: `Player ${playerCount.value}`, points: 0 };
+  localPlayers.push(newPlayer);
+  savePlayersToSession();
+}
+
+function savePlayersToSession() {
+  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(localPlayers));
 }
 
 watch(
   () => localPlayers,
-  (newVal) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newVal));
+  () => {
+    savePlayersToSession();
   },
   { deep: true }
 );
 </script>
 
 <template>
-  <ol>
-    <li class="box" v-for="player in localPlayers" :key="player.name">
-      <div>{{ player.name }}</div>
-      <div>{{ player.points }}</div>
-      <div>
-        <button @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
-        <button @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0)">+</button>
-      </div>
-    </li>
-  </ol>
+  <div>
+    <ol>
+      <li class="box" v-for="player in localPlayers" :key="player.name">
+        <div>{{ player.name }}</div>
+        <div>{{ player.points }}</div>
+        <div>
+          <button @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
+          <button @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0)">+</button>
+        </div>
+      </li>
+    </ol>
+    <div>
+      <button class="button" @click="addPlayer">+</button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -69,5 +89,12 @@ watch(
 
 .box button:hover {
   background-color: #2f90ff;
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #2ca0ff;
+  color: white;
+  font-size: 16px;
 }
 </style>
