@@ -50,7 +50,7 @@ function MakeCurrentPoints(points) {
 </template>
 <style scoped>
 .is-answered {
-  background-color: gray !important;
+  background-color: #2f90ff2c !important;
 
 }
 
