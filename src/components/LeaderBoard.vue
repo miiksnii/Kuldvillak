@@ -10,7 +10,7 @@ const savedCounter = sessionStorage.getItem(PLAYER_COUNTER_KEY);
 
 const initialPlayers = savedData
   ? JSON.parse(savedData)
-  : props.players.map(player => ({ ...player }));
+  : props.players.map(player => ({ ...player, isEditable: false }));
 
 const localPlayers = reactive(initialPlayers);
 const playerCounter = ref(savedCounter ? Number(savedCounter) : initialPlayers.length);
@@ -27,7 +27,7 @@ function decreasePoints(player, pointAmount) {
 
 function addPlayer() {
   playerCounter.value++;
-  const newPlayer = { name: `Player ${playerCounter.value}`, points: 0 };
+  const newPlayer = { name: `Player ${playerCounter.value}`, points: 0, isEditable: false };
   localPlayers.push(newPlayer);
   savePlayersToSession();
   sessionStorage.setItem(PLAYER_COUNTER_KEY, playerCounter.value.toString());
@@ -48,6 +48,7 @@ function removeLastPlayer() {
 function savePlayersToSession() {
   sessionStorage.setItem(STORAGE_KEY, JSON.stringify(localPlayers));
 }
+
 watch(
   () => localPlayers,
   () => {
@@ -55,14 +56,30 @@ watch(
   },
   { deep: true }
 );
+
+function toggleEdit(index) {
+  // Toggle edit mode for the specific player
+  localPlayers[index].isEditable = !localPlayers[index].isEditable;
+}
+
+function savePlayerName(index, event) {
+  // Save the new name when "Enter" is pressed and exit edit mode
+  localPlayers[index].name = event.target.value;
+  localPlayers[index].isEditable = false;
+}
+
 </script>
+
 
 
 <template>
   <div>
     <ol>
-      <li class="box" v-for="player in localPlayers" :key="player.name">
-        <div>{{ player.name }}</div>
+      <li class="box" v-for="(player, index) in localPlayers" :key="player.name">
+        <!-- Show <p> if not editable, otherwise show <input> -->
+        <p v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
+        <input v-if="player.isEditable" :value="player.name" ref="inputField" @blur="toggleEdit(index)"
+          @keydown.enter="savePlayerName(index, $event)" />
         <div>{{ player.points }}</div>
         <div>
           <button @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
@@ -76,6 +93,7 @@ watch(
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .box {
