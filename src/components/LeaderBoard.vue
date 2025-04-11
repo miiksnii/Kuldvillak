@@ -56,7 +56,7 @@ watch(
       </li>
     </ol>
     <div>
-      <button class="button" @click="addPlayer">+</button>
+      <button class="button" @click="addPlayer">Add Team</button>
     </div>
   </div>
 </template>
@@ -93,8 +93,13 @@ watch(
 
 button {
   padding: 8px 12px;
-  background-color: #2ca0ff;
-  color: white;
+  background-color: #2ca0ffbd;
+  color: rgb(0, 0, 0);
   font-size: 16px;
+  border: none;
+}
+
+.button:hover {
+  background-color: #6bff58;
 }
 </style>
