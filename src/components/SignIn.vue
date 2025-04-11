@@ -49,7 +49,7 @@ function Register() {
     </div>
     <div class="field">
         <p class="control">
-            <button style="font-size: larger; width: 3.75cm; background-color: #2ca0ffbd;" @click="Register" class="button is-success">
+            <button style="font-size: larger; width: 3.75cm;" @click="Register" class="button is-success">
                 Sign in
             </button>
         </p>

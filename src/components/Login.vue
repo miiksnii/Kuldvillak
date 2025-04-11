@@ -20,7 +20,7 @@ function login() {
         // Redirect to 'kuldvillak' page
         router.push({ name: 'kuldvillak' });  // Replace with your actual route name
     } else {
-        message.value = 'Invalid username or password.';
+        message.value = 'Invalid username or password';
     }
 }
 </script>
@@ -39,7 +39,7 @@ function login() {
     </div>
     <div class="field">
         <p class="control">
-            <button style="font-size: larger; width: 3.75cm; background-color: #2ca0ffbd;" @click="login" class="button is-success">
+            <button style="font-size: larger; width: 3.75cm;" @click="login" class="button is-success">
                 Login
             </button>
         </p>
