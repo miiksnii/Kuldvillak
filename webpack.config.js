@@ -50,4 +50,10 @@ export default {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
   },
+  ignoreWarnings: [
+    {
+      module: /@vue[\\/]compiler-sfc/,
+      message: /Critical dependency: require function is used/,
+    },
+  ],
 };

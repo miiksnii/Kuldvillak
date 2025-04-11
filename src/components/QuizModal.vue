@@ -11,8 +11,6 @@ function toggleAnswer() {
     emit('questionId', props.ModalQuestion.id);
 }
 
-
-
 </script>
 <template>
     <Modal :active="active" @isModalActive="e => { emit('isModalActive', e); isAnswerShown = false }">
