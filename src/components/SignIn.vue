@@ -31,26 +31,25 @@ function Register() {
 
 <template>
     <Tabs></Tabs>
-    <h1>Sign In</h1>
     <div class="field">
         <div class="control">
-            <input id="usr" v-model="username" class="input" type="text" placeholder="Create username" />
+            <input  id="usr" style="width: 15cm; font-size: 19px; margin-top: 15%;" v-model="username" class="input" type="text" placeholder="Create username" />
         </div>
     </div>
     <div class="field">
         <div class="control">
-            <input id="pw" v-model="password" class="input" type="password" placeholder="Create password" />
+            <input id="pw" style="width: 15cm; font-size: 19px;" v-model="password" class="input" type="password" placeholder="Create password" />
         </div>
     </div>
     <div class="field">
         <div class="control">
-            <input id="rpw" v-model="confirmPassword" class="input" type="password"
+            <input id="rpw" style="width: 15cm; font-size: 19px;" v-model="confirmPassword" class="input" type="password"
                 placeholder="Re-enter your password" />
         </div>
     </div>
     <div class="field">
         <p class="control">
-            <button @click="Register" class="button is-success">
+            <button style="font-size: larger; width: 3.75cm; background-color: #2ca0ffbd;" @click="Register" class="button is-success">
                 Sign in
             </button>
         </p>

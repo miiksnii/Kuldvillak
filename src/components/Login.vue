@@ -27,20 +27,19 @@ function login() {
 
 <template>
     <Tabs></Tabs>
-    <h1>Login</h1>
     <div class="field">
         <div class="control">
-            <input v-model="loginUsername" class="input" type="text" placeholder="Enter your username" />
+            <input style="width: 15cm; font-size: 19px; margin-top: 17%;" v-model="loginUsername" class="input" type="text" placeholder="Enter your username" />
         </div>
     </div>
     <div class="field">
         <div class="control">
-            <input v-model="loginPassword" class="input" type="password" placeholder="Enter your password" />
+            <input style="width: 15cm; font-size: 19px;" v-model="loginPassword" class="input" type="password" placeholder="Enter your password" />
         </div>
     </div>
     <div class="field">
         <p class="control">
-            <button @click="login" class="button is-success">
+            <button style="font-size: larger; width: 3.75cm; background-color: #2ca0ffbd;" @click="login" class="button is-success">
                 Login
             </button>
         </p>
