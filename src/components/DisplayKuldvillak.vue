@@ -20,6 +20,7 @@ function showModal(questionObj) {
 
 function MakeCurrentPoints(points) {
   console.log(points);
+
   emit('PointsForUser', points); // points is not recieved by the parten node
 }
 

@@ -9,7 +9,6 @@ const initialPlayers = savedData
   ? JSON.parse(savedData)
   : props.players.map(player => ({ ...player }));
 
-let pointAmount = ref(100);
 const localPlayers = reactive(initialPlayers);
 
 function increasePoints(player, pointAmount) {
@@ -35,8 +34,8 @@ watch(
       <div>{{ player.name }}</div>
       <div>{{ player.points }}</div>
       <div>
-        <button @click="decreasePoints(player, props.pointAmount)">-</button>
-        <button @click="increasePoints(player, props.pointAmount)">+</button>
+        <button @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
+        <button @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0)">+</button>
       </div>
     </li>
   </ol>
