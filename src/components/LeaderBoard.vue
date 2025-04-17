@@ -58,7 +58,6 @@ watch(
 );
 
 function toggleEdit(index) {
-  // Toggle edit mode for the specific player
   localPlayers[index].isEditable = !localPlayers[index].isEditable;
 }
 
