@@ -64,9 +64,16 @@ function toggleEdit(index) {
 
 function savePlayerName(index, event) {
   // Save the new name when "Enter" is pressed and exit edit mode
-  localPlayers[index].name = event.target.value;
-  localPlayers[index].isEditable = false;
-  event.target.blur();
+  const playerName = document.querySelector(".playerName");
+  const minLength = parseInt(playerName.getAttribute("minlength"));  
+
+  if (playerName.value.length >= minLength) {
+    localPlayers[index].name = event.target.value;
+    localPlayers[index].isEditable = false;
+    event.target.blur();
+  } else {
+    console.log("Min length is 1 chars");
+  }
 }
 
 </script>
@@ -77,7 +84,7 @@ function savePlayerName(index, event) {
         <!-- Player Name -->
         <div class="player-name">
           <p class="title is-5" v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
-          <input class="input is-rounded" v-if="player.isEditable" :value="player.name"
+          <input class="playerName" minlength="1" maxlength="11" v-if="player.isEditable" :value="player.name"
             @keydown.enter="savePlayerName(index, $event)" />
         </div>
 
