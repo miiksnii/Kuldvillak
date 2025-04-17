@@ -103,6 +103,7 @@ input {
   border-width: 2.5px;
   border-color: #00000073;
 }
+
 .box {
   padding: 1rem;
   margin: 0.5rem 0;
@@ -141,11 +142,11 @@ input {
   transition: background-color 0.3s ease;
 }
 
-.button-add:hover {
+.button-add {
   background-color: #4caf50;
 }
 
-.button-remove:hover {
+.button-remove {
   background-color: #f44336;
 }
 </style>
