@@ -58,66 +58,70 @@ watch(
 );
 
 function toggleEdit(index) {
+  // Toggle edit mode for the specific player
   localPlayers[index].isEditable = !localPlayers[index].isEditable;
 }
 
 function savePlayerName(index, event) {
   // Save the new name when "Enter" is pressed and exit edit mode
-  const playerName = document.querySelector(".playerName");
-  const minLength = parseInt(playerName.getAttribute("minlength"));  
-
-  if (playerName.value.length >= minLength) {
-    localPlayers[index].name = event.target.value;
-    localPlayers[index].isEditable = false;
-    event.target.blur();
-  } else {
-    console.log("Min length is 1 chars");
-  }
+  localPlayers[index].name = event.target.value;
+  localPlayers[index].isEditable = false;
+  event.target.blur();
 }
-</script>
 
+</script>
 <template>
-  <div>
+  <div class="container">
     <ol>
       <li class="box" v-for="(player, index) in localPlayers" :key="player.name">
-        <!-- Show <p> if not editable, otherwise show <input> -->
-        <p v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
-        <input class="playerName" minlength="1" maxlength="11" v-if="player.isEditable" :value="player.name"
-          @keydown.enter="savePlayerName(index, $event)" />
+        <!-- Player Name -->
+        <div class="player-name">
+          <p class="title is-5" v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
+          <input class="input is-rounded" v-if="player.isEditable" :value="player.name"
+            @keydown.enter="savePlayerName(index, $event)" />
+        </div>
 
-        <div class="points-box">{{ player.points }}</div>
-        <div>
-          <button class="button button-remove"
+        <!-- Points Box -->
+        <div class="points-box has-text-centered">
+          <p class="subtitle is-6">{{ player.points }}</p>
+        </div>
+
+        <!-- Buttons for increasing/decreasing points -->
+        <div class="buttons has-text-centered">
+          <button class="button is-danger is-rounded"
             @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
-          <button class="button button-add"
+          <button class="button is-success is-rounded"
             @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0)">+</button>
         </div>
       </li>
     </ol>
-    <div>
-      <button class="button button-remove" @click="removeLastPlayer">Remove Team</button>
-      <button class="button button-add" @click="addPlayer">Add Team</button>
+
+    <div class="buttons has-text-centered">
+      <button class="button is-danger is-rounded" @click="removeLastPlayer">Remove Team</button>
+      <button class="button is-primary is-rounded" @click="addPlayer">Add Team</button>
     </div>
   </div>
 </template>
 
 
+
+
+
 <style scoped>
-input {
-  border: solid;
-  font-size: medium;
-  font-weight: 700;
-  width: 130px;
-  border-width: 2.5px;
-  border-color: #00000073;
+/* General Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
+/* Player Box */
 .box {
   padding: 1rem;
   margin: 0.5rem 0;
   border-radius: 8px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* Stack player name, points, and buttons vertically */
   align-items: center;
   background-color: #fbfeff;
   color: black;
@@ -125,18 +129,29 @@ input {
   font-size: larger;
 }
 
-.box button {
-  margin: 0 0.25rem;
-  padding: 0.5rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #2ca0ffbd;
-  color: rgb(255, 255, 255);
-  font-weight: 900;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  cursor: pointer;
+/* Player Name */
+.player-name {
+  margin-bottom: 10px;
+  /* Space between player name and points */
+  text-align: center;
+  /* Center player name */
 }
 
+/* Points Box */
+.points-box {
+  margin-bottom: 10px;
+  /* Space between points and buttons */
+}
+
+/* Buttons Container */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  /* Space between buttons */
+}
+
+/* Button Styling */
 .button {
   padding: 8px 12px;
   margin-left: 15px;
@@ -148,13 +163,34 @@ input {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-weight: 900;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-.button-add {
+.button-add:hover {
   background-color: #4caf50;
+  /* Green on hover for add button */
 }
 
-.button-remove {
+.button-remove:hover {
   background-color: #f44336;
+  /* Red on hover for remove button */
+}
+
+/* Player Box Button Styling */
+.box button {
+  margin: 0 0.25rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  background-color: #2ca0ffbd;
+  color: rgb(255, 255, 255);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* Button Width Consistency */
+.button {
+  min-width: 80px;
+  /* Ensure buttons have consistent width */
 }
 </style>
