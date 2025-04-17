@@ -71,8 +71,6 @@ function savePlayerName(index, event) {
 
 </script>
 
-
-
 <template>
   <div>
     <ol>
@@ -81,7 +79,7 @@ function savePlayerName(index, event) {
         <p v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
         <input v-if="player.isEditable" :value="player.name" @keydown.enter="savePlayerName(index, $event)" />
 
-        <div>{{ player.points }}</div>
+        <div class="points-box">{{ player.points }}</div>
         <div>
           <button class="button button-remove"
             @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
@@ -124,7 +122,7 @@ function savePlayerName(index, event) {
   cursor: pointer;
 }
 
- .button {
+.button {
   padding: 8px 12px;
   margin-left: 15px;
   margin-right: 15px;
