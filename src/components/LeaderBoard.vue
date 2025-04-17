@@ -82,8 +82,8 @@ function savePlayerName(index, event) {
           @keydown.enter="savePlayerName(index, $event)" />
         <div>{{ player.points }}</div>
         <div>
-          <button @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
-          <button @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0)">+</button>
+          <button class="button button-remove" @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
+          <button class="button button-add" @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0)">+</button>
         </div>
       </li>
     </ol>
@@ -121,9 +121,6 @@ function savePlayerName(index, event) {
   cursor: pointer;
 }
 
-.box button:hover {
-  background-color: #2f90ff;
-}
 .button {
   padding: 8px 12px;
   margin-left: 15px;
