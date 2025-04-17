@@ -62,11 +62,18 @@ function toggleEdit(index) {
 }
 
 function savePlayerName(index, event) {
-  localPlayers[index].name = event.target.value;
-  localPlayers[index].isEditable = false;
-  event.target.blur();
-}
+  // Save the new name when "Enter" is pressed and exit edit mode
+  const playerName = document.querySelector(".playerName");
+  const minLength = parseInt(playerName.getAttribute("minlength"));  
 
+  if (playerName.value.length >= minLength) {
+    localPlayers[index].name = event.target.value;
+    localPlayers[index].isEditable = false;
+    event.target.blur();
+  } else {
+    console.log("Min length is 1 chars");
+  }
+}
 </script>
 
 <template>
@@ -75,7 +82,8 @@ function savePlayerName(index, event) {
       <li class="box" v-for="(player, index) in localPlayers" :key="player.name">
         <!-- Show <p> if not editable, otherwise show <input> -->
         <p v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
-        <input v-if="player.isEditable" :value="player.name" @keydown.enter="savePlayerName(index, $event)" />
+        <input class="playerName" minlength="1" maxlength="11" v-if="player.isEditable" :value="player.name"
+          @keydown.enter="savePlayerName(index, $event)" />
 
         <div class="points-box">{{ player.points }}</div>
         <div>
