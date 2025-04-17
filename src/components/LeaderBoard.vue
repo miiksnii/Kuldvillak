@@ -83,7 +83,7 @@ function savePlayerName(index, event) {
 
         <!-- Points Box -->
         <div class="points-box has-text-centered">
-          <p class="subtitle is-6">{{ player.points }}</p>
+          <p class="subtitle is-6 points-text">{{ player.points }}</p>
         </div>
 
         <!-- Buttons for increasing/decreasing points -->
@@ -137,10 +137,16 @@ function savePlayerName(index, event) {
   /* Center player name */
 }
 
+.points-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
 /* Points Box */
 .points-box {
   margin-bottom: 10px;
   /* Space between points and buttons */
+
 }
 
 /* Buttons Container */
