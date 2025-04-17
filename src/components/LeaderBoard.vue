@@ -163,16 +163,15 @@ function savePlayerName(index, event) {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: 900;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
 }
 
-.button-add:hover {
+.button-add {
   background-color: #4caf50;
   /* Green on hover for add button */
 }
 
-.button-remove:hover {
+.button-remove {
   background-color: #f44336;
   /* Red on hover for remove button */
 }
