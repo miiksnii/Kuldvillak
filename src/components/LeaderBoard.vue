@@ -124,11 +124,7 @@ function savePlayerName(index, event) {
   cursor: pointer;
 }
 
-<<<<<<< HEAD .box button:hover {
-  background-color: #2f90ff;
-}
-
-=======>>>>>>>c3bfe35b75f53e46b9ed0efa09b69d3a255abe06 .button {
+ .button {
   padding: 8px 12px;
   margin-left: 15px;
   margin-right: 15px;
