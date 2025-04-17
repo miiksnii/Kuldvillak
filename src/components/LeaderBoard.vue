@@ -58,12 +58,10 @@ watch(
 );
 
 function toggleEdit(index) {
-  // Toggle edit mode for the specific player
   localPlayers[index].isEditable = !localPlayers[index].isEditable;
 }
 
 function savePlayerName(index, event) {
-  // Save the new name when "Enter" is pressed and exit edit mode
   localPlayers[index].name = event.target.value;
   localPlayers[index].isEditable = false;
   event.target.blur();
@@ -99,6 +97,14 @@ function savePlayerName(index, event) {
 
 
 <style scoped>
+input {
+  border: solid;
+  font-size: medium;
+  font-weight: 700;
+  width: 130px;
+  border-width: 2.5px;
+  border-color: #00000073;
+}
 .box {
   padding: 1rem;
   margin: 0.5rem 0;
