@@ -105,6 +105,14 @@ function savePlayerName(index, event) {
 
 
 <style scoped>
+input {
+  border: solid;
+  font-size: medium;
+  font-weight: 700;
+  width: 130px;
+  border-width: 2.5px;
+  border-color: #00000073;
+}
 .box {
   padding: 1rem;
   margin: 0.5rem 0;
