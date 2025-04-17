@@ -66,6 +66,7 @@ function savePlayerName(index, event) {
   // Save the new name when "Enter" is pressed and exit edit mode
   localPlayers[index].name = event.target.value;
   localPlayers[index].isEditable = false;
+  event.target.blur();
 }
 
 </script>
@@ -78,8 +79,8 @@ function savePlayerName(index, event) {
       <li class="box" v-for="(player, index) in localPlayers" :key="player.name">
         <!-- Show <p> if not editable, otherwise show <input> -->
         <p v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
-        <input v-if="player.isEditable" :value="player.name" ref="inputField" @blur="toggleEdit(index)"
-          @keydown.enter="savePlayerName(index, $event)" />
+        <input v-if="player.isEditable" :value="player.name" @keydown.enter="savePlayerName(index, $event)" />
+
         <div>{{ player.points }}</div>
         <div>
           <button @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
@@ -124,6 +125,7 @@ function savePlayerName(index, event) {
 .box button:hover {
   background-color: #2f90ff;
 }
+
 .button {
   padding: 8px 12px;
   margin-left: 15px;
