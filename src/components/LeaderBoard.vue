@@ -84,7 +84,7 @@ function savePlayerName(index, event) {
         <!-- Player Name -->
         <div class="player-name">
           <p class="title is-5" v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
-          <input class="playerName" minlength="1" maxlength="11" v-if="player.isEditable" :value="player.name"
+          <input class="playerName input is-rounded" minlength="1" maxlength="11" v-if="player.isEditable" :value="player.name"
             @keydown.enter="savePlayerName(index, $event)" />
         </div>
 
