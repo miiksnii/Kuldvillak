@@ -1,18 +1,16 @@
 <script setup>
-
-import { ref, reactive } from 'vue';
+import { ref } from 'vue';
 import DisplayKuldvillak from '../components/DisplayKuldvillak.vue';
 import LeaderBoard from '../components/LeaderBoard.vue';
-
-
 
 // Playerlist
 const players = ref([]);
 
+// Points to add
 let pointsToAdd = ref();
 
+// Initialize question data
 let id = 1;
-// max topic length is 23 chars without newline.
 const kuldvillak_data = ref([
   {
     id: id++,
@@ -49,23 +47,41 @@ const kuldvillak_data = ref([
   }
 ]);
 
+// Function to handle points
 function handlePoints(e) {
   pointsToAdd.value = e;
 }
 
+// Function to create a new question table
+function createNewQuestionTable() {
+  const newQuestionTable = {
+    id: id++,
+    topic: "New Topic", // You might want to update the topic too
+    questionsList: [
+      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
+      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
+      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
+      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
+      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
+    ]
+  };
 
+  // Update the data by re-assigning the ref
+  kuldvillak_data.value = [...kuldvillak_data.value, newQuestionTable];
+}
 </script>
-
 
 <template>
   <div class="main-window columns is-multiline">
-
+    <!-- Leaderboard section -->
     <div class="column is-one-quarter leaderboard">
       <LeaderBoard :players="players" :pointAmount="pointsToAdd"></LeaderBoard>
     </div>
 
+    <!-- Kuldvillak section -->
     <div class="column">
-      <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @PointsForUser="e => handlePoints(e)"></DisplayKuldvillak>
+      <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @newKuldvillakData="createNewQuestionTable"
+        @PointsForUser="handlePoints" />
     </div>
   </div>
 </template>
