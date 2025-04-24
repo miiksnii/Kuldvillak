@@ -65,7 +65,7 @@ function toggleEdit(index) {
 function savePlayerName(index, event) {
   // Save the new name when "Enter" is pressed and exit edit mode
   const playerName = document.querySelector(".playerName");
-  const minLength = parseInt(playerName.getAttribute("minlength"));  
+  const minLength = parseInt(playerName.getAttribute("minlength"));
 
   if (playerName.value.length >= minLength) {
     localPlayers[index].name = event.target.value;
@@ -84,8 +84,8 @@ function savePlayerName(index, event) {
         <!-- Player Name -->
         <div class="player-name">
           <p class="title is-5" v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
-          <input class="playerName input is-rounded" minlength="1" maxlength="11" v-if="player.isEditable" :value="player.name"
-            @keydown.enter="savePlayerName(index, $event)" />
+          <input class="playerName input is-rounded" minlength="1" maxlength="11" v-if="player.isEditable"
+            :value="player.name" @keydown.enter="savePlayerName(index, $event)" />
         </div>
 
         <!-- Points Box -->
