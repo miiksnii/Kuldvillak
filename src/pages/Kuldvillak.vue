@@ -83,7 +83,7 @@ function createNewQuestionTable() {
     </div>
 
     <!-- Kuldvillak section -->
-    <div class="column">
+    <div class="column" style="height: fit-content;">
       <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @newKuldvillakData="createNewQuestionTable"
         @PointsForUser="handlePoints" />
     </div>

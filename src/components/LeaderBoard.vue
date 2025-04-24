@@ -16,8 +16,10 @@ const initialPlayers = savedData
 const localPlayers = reactive(initialPlayers);
 const playerCounter = ref(savedCounter ? Number(savedCounter) : initialPlayers.length);
 
-function triggerConfettiAtMouse(event) {
-  const duration = 1 * 100; 
+
+
+function triggerConfettiAtMouse(event, points) {
+  const duration = points;
   const animationEnd = Date.now() + duration;
   const defaults = {
     startVelocity: 20,
@@ -35,15 +37,15 @@ function triggerConfettiAtMouse(event) {
       clearInterval(interval);
     }
     confetti(Object.assign({}, defaults, {
-      particleCount: 25,
+      particleCount: (points / 100) * 3,
       origin: { x: mouseX / window.innerWidth, y: mouseY / window.innerHeight }
     }));
-  }, 60);
+  }, (points / 10));
 }
 
 function increasePoints(player, pointAmount, event) {
   player.points += pointAmount;
-  triggerConfettiAtMouse(event);
+  triggerConfettiAtMouse(event, pointAmount);
   savePlayersToSession();
 }
 
@@ -100,6 +102,9 @@ function savePlayerName(index, event) {
     console.log("Min length is 1 chars");
   }
 }
+
+
+
 </script>
 
 <template>
