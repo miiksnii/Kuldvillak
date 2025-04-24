@@ -4,15 +4,76 @@ import { useRouter } from 'vue-router'
 const router = useRouter();
 
 function goToHome() {
-    router.push({name: 'HomePage'});
+    router.push({ name: 'HomePage' });
 }
 </script>
 
 <template>
-    <ul>
-        <li>Martin Pruus</li>
-        <li>Tauri Tammela</li>
-        <li>Kaspar Bergert</li>
-    </ul>
+    <h1 class="title is-size-1 has-text-weight-bold">
+        Loojad
+    </h1>
+    <div class="columns">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+                            </figure>
+                        </div>
+                        <div class="media-content has-text-left">
+                            <p class="title is-4">Martin Pruus</p>
+                            <p class="subtitle is-6">@Mart1nPr</p>
+                            <a class="button is-link" href="https://github.com/Mart1nPr" target="_blank"><i
+                                    class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+                            </figure>
+                        </div>
+                        <div class="media-content has-text-left">
+                            <p class="title is-4">Kaspar Bergert</p>
+                            <p class="subtitle is-6">@MasterShifuCsgo</p>
+                            <a class="button is-link" href="https://github.com/MasterShifuCsgo" target="_blank"><i
+                                    class="fab fa-github"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+                            </figure>
+                        </div>
+                        <div class="media-content has-text-left">
+                            <p class="title is-4">Tauri Tammela</p>
+                            <p class="subtitle is-6">@markusmikk100</p>
+                            <a class="button is-link" href="https://github.com/markusmikk100" target="_blank">
+                                <i class="fab fa-github"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <button class="button is-large is-primary mt-6" @click="goToHome">Back</button>
 </template>
