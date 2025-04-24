@@ -36,9 +36,18 @@ function MakeCurrentPoints(points) {
 function sendQuestionTableEmit() {
   emit('newKuldvillakData', props.kuldvillak_data);
 }
+
+// Handle question updates from the modal
+function updateQuestion(updatedQuestion) {
+  // Find and update the question in kuldvillak_data
+  props.kuldvillak_data.forEach(category => {
+    const questionIndex = category.questionsList.findIndex(q => q.id === updatedQuestion.id);
+    if (questionIndex !== -1) {
+      category.questionsList[questionIndex] = updatedQuestion;
+    }
+  });
+}
 </script>
-
-
 
 <template>
   <div class="columns">
@@ -70,15 +79,14 @@ function sendQuestionTableEmit() {
   </div>
 
   <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive"
-    @questionId="questionId => { isAnswered.push(questionId); }" @isModalActive="e => isModalActive = e">
+    @questionId="questionId => { isAnswered.push(questionId); }" @isModalActive="e => isModalActive = e"
+    @updateQuestion="updateQuestion">
   </QuizModal>
 </template>
-
 
 <style scoped>
 .is-answered {
   background-color: #2f90ff2c !important;
-
 }
 
 .header {
