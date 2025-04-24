@@ -8,7 +8,6 @@ import confetti from 'canvas-confetti';
 
 <template>
   <section class="section is-fullheight has-text-centered">
-
     <router-view></router-view>
   </section>
 </template>

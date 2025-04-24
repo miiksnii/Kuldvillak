@@ -3,8 +3,8 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter();
 
-function goToMain() {
-    router.push({ name: 'Main' });
+function goToLogIn() {
+    router.push({ name: 'Login' });
 }
 
 function goToUpdates() {
@@ -28,7 +28,7 @@ function goToCredits() {
                 Sinivillak, sest disain on sinine. <br>
             </p>
             <ul>
-                <li><button class="button is-large is-primary mt-6" @click="goToMain">Alusta mängu</button></li>
+                <li><button class="button is-large is-primary mt-6" @click="goToLogIn">Alusta mängu</button></li>
                 <li><button class="button is-large is-primary mt-6" @click="goToUpdates">Uuendused</button></li>
                 <li><button class="button is-large is-primary mt-6" @click="goToCredits">Loojad</button></li>
             </ul>
