@@ -5,22 +5,28 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 
 import Login from "./components/Login.vue";
 import SignIn from "./components/SignIn.vue";
-import Kuldvillak from './pages/Kuldvillak.vue';
 
-// Define your routes
+import Main from './pages/Main.vue'
+import Kuldvillak from './pages/Kuldvillak.vue';
+import HomePage from './pages/HomePage.vue';
+import Updates from './pages/Updates.vue';
+import Credits from './pages/Credits.vue';
+
+
 const routes = [
-    { path: '/', component: Login, name: "Login" },
+    { path: '/', component: HomePage, name: "HomePage"},
+    { path: '/Main', component: Main, name: "Main"},
+    { path: '/Updates', component: Updates, name: "Updates"},
+    { path: '/Credits', component: Credits, name: "Credits"},
+    { path: '/LogIn', component: Login, name: "Login" },
     { path: '/SignIn', component: SignIn, name: "Sign in" },
     {
         path: '/kuldvillak',
         component: Kuldvillak,
         name: "kuldvillak",
-        meta: { requiresAuth: true } // Mark this route as requiring authentication
+        meta: { requiresAuth: true } 
     }
 ];
-
-
-
 
 // Create the router instance
 const router = createRouter({

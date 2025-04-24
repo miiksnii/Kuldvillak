@@ -7,16 +7,17 @@ const route = useRoute();
 const activeTab = ref(0);
 
 const UserAvailableTabs = [
-  { path: '/', name: "Login" },
+  { path: '/LogIn', name: "Login" },
   { path: '/SignIn', name: "Sign in" },
 ];
 
 </script>
 
 <template>
-  <div class="tabs is-centered">  
+  <div class="tabs is-centered">
     <ul>
-      <li v-for="(item, index) in UserAvailableTabs" :key="item.path" style="font-size: larger; font-weight: 600; " @click="activeTab = index">
+      <li v-for="(item, index) in UserAvailableTabs" :key="item.path" style="font-size: larger; font-weight: 600; "
+        @click="activeTab = index">
         <RouterLink :to="item.path" class="has-text-white">{{ item.name }}</RouterLink>
       </li>
     </ul>
