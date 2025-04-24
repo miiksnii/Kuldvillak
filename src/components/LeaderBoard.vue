@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, ref, watch } from 'vue';
+import confetti from 'canvas-confetti';  // Importing the confetti package
 
 const props = defineProps(['players', 'pointAmount']);
 const STORAGE_KEY = 'players-points-session';
@@ -15,8 +16,34 @@ const initialPlayers = savedData
 const localPlayers = reactive(initialPlayers);
 const playerCounter = ref(savedCounter ? Number(savedCounter) : initialPlayers.length);
 
-function increasePoints(player, pointAmount) {
+function triggerConfettiAtMouse(event) {
+  const duration = 1 * 100; 
+  const animationEnd = Date.now() + duration;
+  const defaults = {
+    startVelocity: 20,
+    spread: 90,
+    ticks: 900,
+    zIndex: 10,
+  };
+
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+
+  const interval = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+    if (timeLeft <= 0) {
+      clearInterval(interval);
+    }
+    confetti(Object.assign({}, defaults, {
+      particleCount: 25,
+      origin: { x: mouseX / window.innerWidth, y: mouseY / window.innerHeight }
+    }));
+  }, 60);
+}
+
+function increasePoints(player, pointAmount, event) {
   player.points += pointAmount;
+  triggerConfettiAtMouse(event);
   savePlayersToSession();
 }
 
@@ -58,12 +85,10 @@ watch(
 );
 
 function toggleEdit(index) {
-  // Toggle edit mode for the specific player
   localPlayers[index].isEditable = !localPlayers[index].isEditable;
 }
 
 function savePlayerName(index, event) {
-  // Save the new name when "Enter" is pressed and exit edit mode
   const playerName = document.querySelector(".playerName");
   const minLength = parseInt(playerName.getAttribute("minlength"));
 
@@ -75,30 +100,27 @@ function savePlayerName(index, event) {
     console.log("Min length is 1 chars");
   }
 }
-
 </script>
+
 <template>
   <div class="container">
     <ol>
       <li class="box" v-for="(player, index) in localPlayers" :key="player.name">
-        <!-- Player Name -->
         <div class="player-name">
           <p class="title is-5" v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
           <input class="playerName input is-rounded" minlength="1" maxlength="11" v-if="player.isEditable"
             :value="player.name" @keydown.enter="savePlayerName(index, $event)" />
         </div>
 
-        <!-- Points Box -->
         <div class="points-box has-text-centered">
           <p class="subtitle is-6 points-text">{{ player.points }}</p>
         </div>
 
-        <!-- Buttons for increasing/decreasing points -->
         <div class="buttons has-text-centered">
           <button class="button is-danger is-rounded"
             @click="decreasePoints(player, props.pointAmount ? props.pointAmount : 0)">-</button>
           <button class="button is-success is-rounded"
-            @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0)">+</button>
+            @click="increasePoints(player, props.pointAmount ? props.pointAmount : 0, $event)">+</button>
         </div>
       </li>
     </ol>
@@ -109,10 +131,6 @@ function savePlayerName(index, event) {
     </div>
   </div>
 </template>
-
-
-
-
 
 <style scoped>
 /* General Container */
@@ -128,7 +146,6 @@ function savePlayerName(index, event) {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  /* Stack player name, points, and buttons vertically */
   align-items: center;
   background-color: #fbfeff;
   color: black;
@@ -139,9 +156,7 @@ function savePlayerName(index, event) {
 /* Player Name */
 .player-name {
   margin-bottom: 10px;
-  /* Space between player name and points */
   text-align: center;
-  /* Center player name */
 }
 
 .points-text {
@@ -152,8 +167,6 @@ function savePlayerName(index, event) {
 /* Points Box */
 .points-box {
   margin-bottom: 10px;
-  /* Space between points and buttons */
-
 }
 
 /* Buttons Container */
@@ -161,7 +174,6 @@ function savePlayerName(index, event) {
   display: flex;
   justify-content: center;
   gap: 10px;
-  /* Space between buttons */
 }
 
 /* Button Styling */
@@ -176,17 +188,14 @@ function savePlayerName(index, event) {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
 }
 
 .button-add {
   background-color: #4caf50;
-  /* Green on hover for add button */
 }
 
 .button-remove {
   background-color: #f44336;
-  /* Red on hover for remove button */
 }
 
 /* Player Box Button Styling */
@@ -203,6 +212,5 @@ function savePlayerName(index, event) {
 /* Button Width Consistency */
 .button {
   min-width: 80px;
-  /* Ensure buttons have consistent width */
 }
 </style>
