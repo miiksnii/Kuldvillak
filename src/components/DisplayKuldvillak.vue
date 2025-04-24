@@ -10,50 +10,71 @@ let isModalActive = ref(false);
 let ModalQuestion = ref('');
 let isAnswered = ref([]); //holds a list of answered modal questions
 
+// Start editing the topic
+function editTopic(data) {
+  data.isEditingTopic = true; // Toggle the editing state
+}
 
+// Save the topic after editing
+function saveTopic(data) {
+  data.isEditingTopic = false; // Switch back to text
+}
+
+// Show Modal for answering questions
 function showModal(questionObj) {
   isModalActive.value = true;
   ModalQuestion = questionObj;
-
 }
 
+// Function to handle points
 function MakeCurrentPoints(points) {
   console.log(points);
-
-  emit('PointsForUser', points); // points is not recieved by the parten node
+  emit('PointsForUser', points); // Send the points to the parent component
 }
 
+// Emit signal to create a new question table
 function sendQuestionTableEmit() {
-  // emits a signal that a new question table should be created
   emit('newKuldvillakData', props.kuldvillak_data);
 }
-
-
 </script>
+
+
 
 <template>
   <div class="columns">
     <div class="column kuldvillak-data" v-for="data in kuldvillak_data" :key="data.id">
       <div class="header box">
-        <p class="header-text is-text-center my-2 py-2 py-5 is-size-4">{{ data.topic }}</p>
+        <!-- Editable Topic -->
+        <p v-if="!data.isEditingTopic" class="header-text is-text-center my-2 py-2 py-5 is-size-4"
+          @click="editTopic(data)">
+          {{ data.topic }}
+        </p>
+        <input v-else type="text" v-model="data.topic" class="header-text is-text-center my-2 py-2 py-5 is-size-4"
+          @blur="saveTopic(data)" @keyup.enter="saveTopic(data)">
       </div>
 
       <div class="numbered-cards">
         <div class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
-          :class="{ 'is-answered': isAnswered.includes(question.id) }" v-for="question, index in data.questionsList"
+          :class="{ 'is-answered': isAnswered.includes(question.id) }" v-for="(question, index) in data.questionsList"
           :key="question.id" @click="() => { showModal(question); MakeCurrentPoints(((index + 1) * 100)) }">
-          ${{ (index + 1) * 100 }}
+
+          <!-- Non-editable Question -->
+          <p>
+            ${{ (index + 1) * 100 }}
+          </p>
         </div>
       </div>
     </div>
+
     <button style="margin-top: 12px;" @click="sendQuestionTableEmit()">+</button>
   </div>
 
   <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive"
     @questionId="questionId => { isAnswered.push(questionId); }" @isModalActive="e => isModalActive = e">
   </QuizModal>
-
 </template>
+
+
 <style scoped>
 .is-answered {
   background-color: #2f90ff2c !important;

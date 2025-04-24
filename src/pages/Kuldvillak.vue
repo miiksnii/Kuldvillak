@@ -69,6 +69,12 @@ function createNewQuestionTable() {
   // Update the data by re-assigning the ref
   kuldvillak_data.value = [...kuldvillak_data.value, newQuestionTable];
 }
+
+
+
+
+
+
 </script>
 
 <template>
