@@ -4,8 +4,7 @@ import { defineEmits, defineProps } from 'vue';
 import QuizModal from './QuizModal.vue';
 
 const props = defineProps(['kuldvillak_data']);
-const emit = defineEmits(['PointsForUser']);
-
+const emit = defineEmits(['PointsForUser', 'newKuldvillakData']);
 
 let isModalActive = ref(false);
 let ModalQuestion = ref('');
@@ -24,6 +23,12 @@ function MakeCurrentPoints(points) {
   emit('PointsForUser', points); // points is not recieved by the parten node
 }
 
+function sendQuestionTableEmit() {
+  // emits a signal that a new question table should be created
+  emit('newKuldvillakData', props.kuldvillak_data);
+}
+
+
 </script>
 
 <template>
@@ -41,6 +46,7 @@ function MakeCurrentPoints(points) {
         </div>
       </div>
     </div>
+    <button style="margin-top: 12px;" @click="sendQuestionTableEmit()">+</button>
   </div>
 
   <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive"
