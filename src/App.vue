@@ -6,7 +6,6 @@ import Tabs from './components/Tabs.vue'
 
 <template>
   <section class="section is-fullheight has-text-centered">
-
     <router-view></router-view>
   </section>
 </template>

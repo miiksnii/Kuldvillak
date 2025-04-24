@@ -73,8 +73,6 @@ function createNewQuestionTable() {
 
 
 
-
-
 </script>
 
 <template>
