@@ -1,5 +1,8 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
+import KasparImage from '../assets/136521147.png';
+import TauriImage from '../assets/47485001.png';
+import MartinImage from '../assets/144675657.png';
 
 const router = useRouter();
 
@@ -19,7 +22,7 @@ function goToHome() {
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-128x128">
-                                <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+                                <img class="is-rounded" :src="MartinImage" />
                             </figure>
                         </div>
                         <div class="media-content has-text-left">
@@ -39,7 +42,7 @@ function goToHome() {
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-128x128">
-                                <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+                                <img class="is-rounded" :src="KasparImage" />
                             </figure>
                         </div>
                         <div class="media-content has-text-left">
@@ -60,7 +63,7 @@ function goToHome() {
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-128x128">
-                                <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+                                <img class="is-rounded" :src="TauriImage" />
                             </figure>
                         </div>
                         <div class="media-content has-text-left">
