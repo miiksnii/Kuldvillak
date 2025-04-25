@@ -4,7 +4,7 @@ import { defineEmits, defineProps } from 'vue';
 import QuizModal from './QuizModal.vue';
 
 const props = defineProps(['kuldvillak_data']);
-const emit = defineEmits(['PointsForUser', 'newKuldvillakData']);
+const emit = defineEmits(['PointsForUser', 'createNewQuestionTable', 'removeQuestionTable']);
 
 let isModalActive = ref(false);
 let ModalQuestion = ref('');
@@ -33,9 +33,14 @@ function MakeCurrentPoints(points) {
 }
 
 // Emit signal to create a new question table
-function sendQuestionTableEmit() {
-  emit('newKuldvillakData', props.kuldvillak_data);
+function createNewQuestionTable() {
+  emit('createNewQuestionTable', props.kuldvillak_data);
 }
+
+function removeQuestionTable(index) {
+  emit('removeQuestionTable', index);
+}
+
 
 // Handle question updates from the modal
 function updateQuestion(updatedQuestion) {
@@ -51,8 +56,11 @@ function updateQuestion(updatedQuestion) {
 
 <template>
   <div class="columns">
-    <div class="column kuldvillak-data" v-for="data in kuldvillak_data" :key="data.id">
+    <div class="column kuldvillak-data" v-for="(data, index) in kuldvillak_data" :key="data.id">
       <div class="header box">
+        <!-- Button aligned to the top-left -->
+        <button class="remove-table left-button" @click="removeQuestionTable(index)">-</button>
+
         <!-- Editable Topic -->
         <p v-if="!data.isEditingTopic" class="header-text is-text-center my-2 py-2 py-5 is-size-4"
           @click="editTopic(data)">
@@ -75,7 +83,7 @@ function updateQuestion(updatedQuestion) {
       </div>
     </div>
 
-    <button style="margin-top: 12px;" @click="sendQuestionTableEmit()">+</button>
+    <button style="margin-top: 12px;" @click="createNewQuestionTable()">+</button>
   </div>
 
   <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive"
@@ -95,6 +103,32 @@ function updateQuestion(updatedQuestion) {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   user-select: none;
   color: white;
+  display: flex;
+  flex-direction: column;
+  /* Stack the elements vertically */
+  align-items: flex-start;
+  /* Align content to the left */
+}
+
+.left-button {
+  margin-bottom: 10px;
+  /* Space between button and text */
+  width: 50px;
+  /* Smaller width */
+  height: 30px;
+  /* Smaller height */
+  font-size: 18px;
+  /* Smaller text */
+  padding: 5px;
+  /* Reduce padding */
+}
+
+
+.header-text {
+  width: 100%;
+  /* Ensures the p element takes full width of the header */
+  text-align: center;
+  /* Centers the text */
 }
 
 .numbered-card {

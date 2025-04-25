@@ -37,7 +37,7 @@ function triggerConfettiAtMouse(event, points) {
       clearInterval(interval);
     }
     confetti(Object.assign({}, defaults, {
-      particleCount: (points / 100) * 3,
+      particleCount: (points / 100) * points / 100,
       origin: { x: mouseX / window.innerWidth, y: mouseY / window.innerHeight }
     }));
   }, (points / 10));

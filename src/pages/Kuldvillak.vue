@@ -70,7 +70,12 @@ function createNewQuestionTable() {
   kuldvillak_data.value = [...kuldvillak_data.value, newQuestionTable];
 }
 
+function removeQuestionTable(givenIndex) {
+  console.log(givenIndex);
 
+  kuldvillak_data.value = kuldvillak_data.value.filter((table, index) => index !== givenIndex);
+
+}
 
 
 </script>
@@ -84,8 +89,8 @@ function createNewQuestionTable() {
 
     <!-- Kuldvillak section -->
     <div class="column" style="height: fit-content;">
-      <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @newKuldvillakData="createNewQuestionTable"
-        @PointsForUser="handlePoints" />
+      <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @createNewQuestionTable="createNewQuestionTable"
+        @PointsForUser="handlePoints" @removeQuestionTable="(index) => removeQuestionTable(index)" />
     </div>
   </div>
 </template>
