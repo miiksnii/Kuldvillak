@@ -9,7 +9,7 @@ function goToHome() {
 </script>
 
 <template>
-    <h1 class="title is-size-1 has-text-weight-bold">
+    <h1 class="title is-size-1 has-text-weight-bold has-text-white">
         Loojad
     </h1>
     <div class="columns">
@@ -75,5 +75,5 @@ function goToHome() {
             </div>
         </div>
     </div>
-    <button class="button is-large is-primary mt-6" @click="goToHome">Back</button>
+    <button class="button is-large is-primary mt-6 has-text-white" @click="goToHome" >Back</button>
 </template>
