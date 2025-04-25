@@ -39,7 +39,7 @@ function login() {
     </div>
     <div class="field">
         <p class="control">
-            <button style="font-size: larger; width: 3.75cm;" @click="login" class="button is-success">
+            <button style="font-size: larger; width: 3.75cm;" @click="login" class="button has-text-white is-success">
                 Login
             </button>
         </p>

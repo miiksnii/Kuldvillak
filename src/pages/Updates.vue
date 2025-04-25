@@ -9,5 +9,5 @@ function goToHome() {
 </script>
 
 <template>
-    <button class="button is-large is-primary mt-6" @click="goToHome">Back</button>
+    <button class="button is-large is-primary mt-6 has-text-white" @click="goToHome">Back</button>
 </template>
