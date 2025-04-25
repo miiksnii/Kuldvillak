@@ -50,19 +50,20 @@ const kuldvillak_data = ref([
 // Function to handle points
 function handlePoints(e) {
   pointsToAdd.value = e;
+  showPopup();  // Show the popup when points are added
 }
 
 // Function to create a new question table
 function createNewQuestionTable() {
   const newQuestionTable = {
     id: id++,
-    topic: "New Topic", // You might want to update the topic too
+    topic: "New Topic",
     questionsList: [
-      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
-      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
-      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
-      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
-      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." },
+      { id: id++, question: "enter question", answer: "create an answer" },
+      { id: id++, question: "enter question", answer: "create an answer" },
+      { id: id++, question: "enter question", answer: "create an answer" },
+      { id: id++, question: "enter question", answer: "create an answer" },
+      { id: id++, question: "enter question", answer: "create an answer" },
     ]
   };
 
@@ -72,13 +73,20 @@ function createNewQuestionTable() {
 
 function removeQuestionTable(givenIndex) {
   console.log(givenIndex);
-
   kuldvillak_data.value = kuldvillak_data.value.filter((table, index) => index !== givenIndex);
-
 }
 
+// Popup Logic
+const isVisible = ref(false);
 
+function showPopup() {
+  isVisible.value = true;
+  setTimeout(() => {
+    isVisible.value = false;
+  }, 3000);  // Popup will disappear after 3 seconds
+}
 </script>
+
 
 <template>
   <div class="main-window columns is-multiline">
@@ -92,8 +100,17 @@ function removeQuestionTable(givenIndex) {
       <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @createNewQuestionTable="createNewQuestionTable"
         @PointsForUser="handlePoints" @removeQuestionTable="(index) => removeQuestionTable(index)" />
     </div>
+
+    <!-- Popup Notification -->
+    <div v-if="isVisible" class="popup has-text-centered">
+      <div class="notification is-primary">
+        <button class="delete" @click="isVisible = false"></button>
+        <p>Achievement! {{ pointsToAdd }}</p>
+      </div>
+    </div>
   </div>
 </template>
+
 
 <style scoped>
 .main-window {
@@ -104,5 +121,19 @@ function removeQuestionTable(givenIndex) {
 
 .leaderboard {
   max-width: 13vw;
+}
+
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+
+}
+
+.notification {
+  min-width: 20em;
+  min-height: 2em;
+  text-align: center;
 }
 </style>
