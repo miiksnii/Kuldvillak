@@ -6,8 +6,7 @@
     "start": "npx webpack serve --mode development --open",
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
-    "release": "webpack serve --open --mode production",
-    "test": "echo \"No tests yet\" && exit 0"
+    "release": "webpack serve --open --mode production"
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,9 @@
   "dependencies": {
     "bulma": "^1.0.3",
     "canvas-confetti": "^1.9.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   }
