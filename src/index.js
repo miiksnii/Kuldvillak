@@ -8,13 +8,11 @@ import SignIn from "./components/SignIn.vue";
 
 import Kuldvillak from './pages/Kuldvillak.vue';
 import HomePage from './pages/HomePage.vue';
-import Updates from './pages/Updates.vue';
 import Credits from './pages/Credits.vue';
 
 
 const routes = [
     { path: '/', component: HomePage, name: "HomePage" },
-    { path: '/Updates', component: Updates, name: "Updates" },
     { path: '/Credits', component: Credits, name: "Credits" },
     { path: '/LogIn', component: Login, name: "Login" },
     { path: '/SignIn', component: SignIn, name: "Sign in" },
