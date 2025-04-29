@@ -56,7 +56,7 @@ function updateQuestion(updatedQuestion) {
 
 <template>
   <div class="columns">
-    <div class="column kuldvillak-data" v-for="(data, index) in kuldvillak_data" :key="data.id">
+    <div class="column kuldvillak-data question_table" v-for="(data, index) in kuldvillak_data" :key="data.id">
       <div class="header box">
         <!-- Button aligned to the top-left -->
         <button class="remove-table left-button" @click="removeQuestionTable(index)">-</button>
@@ -93,6 +93,11 @@ function updateQuestion(updatedQuestion) {
 </template>
 
 <style scoped>
+
+.question_table {
+  max-width: 25%;
+}
+
 .is-answered {
   background-color: #2f90ff2c !important;
 }
