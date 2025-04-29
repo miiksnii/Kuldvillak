@@ -28,7 +28,6 @@ function showModal(questionObj) {
 
 // Function to handle points
 function MakeCurrentPoints(points) {
-  console.log(points);
   emit('PointsForUser', points); // Send the points to the parent component
 }
 
@@ -45,6 +44,9 @@ function removeQuestionTable(index) {
 // Handle question updates from the modal
 function updateQuestion(updatedQuestion) {
   // Find and update the question in kuldvillak_data
+
+  console.log(updatedQuestion.id);
+
   props.kuldvillak_data.forEach(category => {
     const questionIndex = category.questionsList.findIndex(q => q.id === updatedQuestion.id);
     if (questionIndex !== -1) {

@@ -3,6 +3,19 @@ import { ref } from 'vue';
 import DisplayKuldvillak from '../components/DisplayKuldvillak.vue';
 import LeaderBoard from '../components/LeaderBoard.vue';
 
+function generateUUID(uniqueSeed) {
+  // Ensure uniqueSeed is always a string (can be a timestamp or any changing value)
+  const seed = uniqueSeed || new Date().getTime(); // Default to current timestamp if no argument is provided
+
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = Math.random() * 16 | 0; // Random number between 0 and 15
+    const v = c === 'x' ? r : (r & 0x3 | 0x8); // Set the "y" to be 8, 9, A, or B
+    return v.toString(16);
+  }) + seed; // Append the uniqueSeed to ensure uniqueness
+}
+
+
+
 // Playerlist
 const players = ref([]);
 
@@ -13,36 +26,36 @@ let pointsToAdd = ref();
 let id = 1;
 const kuldvillak_data = ref([
   {
-    id: id++,
+    id: generateUUID(id++),
     topic: "JavaScript Core",
     questionsList: [
-      { id: id++, question: "What does 'this' refer to in a method?", answer: "'this' refers to the object the method is called on." },
-      { id: id++, question: "Name a difference between var, let, and const.", answer: "var is function-scoped, let/const are block-scoped." },
-      { id: id++, question: "What is hoisting?", answer: "Variable/function declarations are moved to the top of scope." },
-      { id: id++, question: "Is JavaScript single-threaded?", answer: "Yes, but async operations use the event loop." },
-      { id: id++, question: "What is a closure?", answer: "A function that retains access to its lexical scope." }
+      { id: generateUUID(id++), question: "What does 'this' refer to in a method?", answer: "'this' refers to the object the method is called on." },
+      { id: generateUUID(id++), question: "Name a difference between var, let, and const.", answer: "var is function-scoped, let/const are block-scoped." },
+      { id: generateUUID(id++), question: "What is hoisting?", answer: "Variable/function declarations are moved to the top of scope." },
+      { id: generateUUID(id++), question: "Is JavaScript single-threaded?", answer: "Yes, but async operations use the event loop." },
+      { id: generateUUID(id++), question: "What is a closure?", answer: "A function that retains access to its lexical scope." }
     ]
   },
   {
-    id: id++,
+    id: generateUUID(id++),
     topic: "Vue.js",
     questionsList: [
-      { id: id++, question: "What is the Composition API?", answer: "An API using setup() to organize logic by feature, not option." },
-      { id: id++, question: "How do you pass props to a component?", answer: "By adding props as HTML attributes in parent template." },
-      { id: id++, question: "What is a reactive ref?", answer: "A wrapper object that tracks value changes with .value." },
-      { id: id++, question: "When does a watcher trigger?", answer: "When its dependency changes." },
-      { id: id++, question: "What does v-if do during render?", answer: "It conditionally renders or removes elements from DOM." }
+      { id: generateUUID(id++), question: "What is the Composition API?", answer: "An API using setup() to organize logic by feature, not option." },
+      { id: generateUUID(id++), question: "How do you pass props to a component?", answer: "By adding props as HTML attributes in parent template." },
+      { id: generateUUID(id++), question: "What is a reactive ref?", answer: "A wrapper object that tracks value changes with .value." },
+      { id: generateUUID(id++), question: "When does a watcher trigger?", answer: "When its dependency changes." },
+      { id: generateUUID(id++), question: "What does v-if do during render?", answer: "It conditionally renders or removes elements from DOM." }
     ]
   },
   {
-    id: id++,
+    id: generateUUID(id++),
     topic: "Rendering Logic",
     questionsList: [
-      { id: id++, question: "What triggers a reflow?", answer: "Changes to layout-affecting styles or DOM structure." },
-      { id: id++, question: "What is repaint vs reflow?", answer: "Repaint updates visuals; reflow recalculates layout." },
-      { id: id++, question: "What is the render tree?", answer: "A structure combining DOM + CSSOM to paint the page." },
-      { id: id++, question: "What blocks rendering?", answer: "Synchronous scripts and heavy style recalculations." },
-      { id: id++, question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." }
+      { id: generateUUID(id++), question: "What triggers a reflow?", answer: "Changes to layout-affecting styles or DOM structure." },
+      { id: generateUUID(id++), question: "What is repaint vs reflow?", answer: "Repaint updates visuals; reflow recalculates layout." },
+      { id: generateUUID(id++), question: "What is the render tree?", answer: "A structure combining DOM + CSSOM to paint the page." },
+      { id: generateUUID(id++), question: "What blocks rendering?", answer: "Synchronous scripts and heavy style recalculations." },
+      { id: generateUUID(id++), question: "How does virtual DOM help?", answer: "It batches changes and minimizes direct DOM access." }
     ]
   }
 ]);
@@ -56,14 +69,14 @@ function handlePoints(e) {
 // Function to create a new question table
 function createNewQuestionTable() {
   const newQuestionTable = {
-    id: id++,
+    id: generateUUID,
     topic: "New Topic",
     questionsList: [
-      { id: id++, question: "enter question", answer: "create an answer" },
-      { id: id++, question: "enter question", answer: "create an answer" },
-      { id: id++, question: "enter question", answer: "create an answer" },
-      { id: id++, question: "enter question", answer: "create an answer" },
-      { id: id++, question: "enter question", answer: "create an answer" },
+      { id: generateUUID, question: "enter question", answer: "create an answer" },
+      { id: generateUUID, question: "enter question", answer: "create an answer" },
+      { id: generateUUID, question: "enter question", answer: "create an answer" },
+      { id: generateUUID, question: "enter question", answer: "create an answer" },
+      { id: generateUUID, question: "enter question", answer: "create an answer" },
     ]
   };
 
