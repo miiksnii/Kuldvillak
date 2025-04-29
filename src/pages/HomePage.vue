@@ -7,10 +7,6 @@ function goToLogIn() {
     router.push({ name: 'Login' });
 }
 
-function goToUpdates() {
-    router.push({ name: 'Updates' });
-}
-
 function goToCredits() {
     router.push({ name: 'Credits' });
 }
@@ -29,7 +25,6 @@ function goToCredits() {
             </p>
             <ul>
                 <li><button class="button is-large is-primary mt-6 has-text-white" @click="goToLogIn">Alusta mängu</button></li>
-                <li><button class="button is-large is-primary mt-6 has-text-white"  @click="goToUpdates">Uuendused</button></li>
                 <li><button class="button is-large is-primary mt-6 has-text-white"  @click="goToCredits">Loojad</button></li>
             </ul>
         </div>
