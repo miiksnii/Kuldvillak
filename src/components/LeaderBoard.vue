@@ -113,8 +113,8 @@ function savePlayerName(index, event) {
       <li class="box" v-for="(player, index) in localPlayers" :key="player.name">
         <div class="player-name">
           <p class="title is-5" v-if="!player.isEditable" @click="toggleEdit(index)">{{ player.name }}</p>
-          <input class="playerName input is-rounded" minlength="1" maxlength="11" v-if="player.isEditable"
-            :value="player.name" @keydown.enter="savePlayerName(index, $event)" />
+          <input class="input is-rounded" minlength="1" maxlength="11" v-if="player.isEditable" :value="player.name"
+            @keydown.enter="savePlayerName(index, $event)" />
         </div>
 
         <div class="points-box has-text-centered">
@@ -142,6 +142,7 @@ function savePlayerName(index, event) {
 .container {
   max-width: 800px;
   margin: 0 auto;
+  flex: auto;
 }
 
 /* Player Box */
@@ -164,6 +165,7 @@ function savePlayerName(index, event) {
   text-align: center;
 }
 
+/* Points Text */
 .points-text {
   font-size: 1.5rem;
   font-weight: 600;
@@ -179,43 +181,5 @@ function savePlayerName(index, event) {
   display: flex;
   justify-content: center;
   gap: 10px;
-}
-
-/* Button Styling */
-.button {
-  padding: 8px 12px;
-  margin-left: 15px;
-  margin-right: 15px;
-  background-color: #2ca0ffbd;
-  color: rgb(255, 255, 255);
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button-add {
-  background-color: #4caf50;
-}
-
-.button-remove {
-  background-color: #f44336;
-}
-
-/* Player Box Button Styling */
-.box button {
-  margin: 0 0.25rem;
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  background-color: #2ca0ffbd;
-  color: rgb(255, 255, 255);
-  font-weight: 900;
-  cursor: pointer;
-}
-
-/* Button Width Consistency */
-.button {
-  min-width: 80px;
 }
 </style>

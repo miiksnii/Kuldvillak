@@ -1,8 +1,5 @@
 <script setup>
 
-import Tabs from './components/Tabs.vue'
-import confetti from 'canvas-confetti';
-
 
 </script>
 
