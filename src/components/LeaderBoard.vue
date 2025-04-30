@@ -150,7 +150,6 @@ function handleEnterKey(index) {
           </p>
           <input v-else :id="`player-input-${player.id}`" class="input is-rounded" v-model.trim="player.name"
             minlength="1" maxlength="11" @keydown.enter.prevent="handleEnterKey(i)" @blur="toggleEdit(i)" />
-
         </div>
 
         <div class="points-box has-text-centered">
