@@ -67,9 +67,9 @@ watch(
 )
 
 function triggerConfettiAtMouse(event, points) {
-  const duration = 1000
-  const end = Date.now() + duration
-  const defaults = { startVelocity: 20, spread: 90, ticks: 60, zIndex: 10 }
+  const duration = 1000 
+  const end = Date.now() + duration + points * 2
+  const defaults = { startVelocity: Math.min(points / 10, 50), spread: 90, ticks: 60, zIndex: 10 }
 
   const interval = setInterval(() => {
     if (Date.now() > end) {
