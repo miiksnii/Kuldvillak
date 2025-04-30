@@ -122,6 +122,12 @@ function showPopup() {
       </div>
     </div>
   </div>
+
+  <!-- Import & Export buttons -->
+  <div class="buttons has-text-centered">
+      <button class="button is-primary has-text-white">Export</button>
+      <button class="button is-primary has-text-white">Import</button>
+    </div>
 </template>
 
 
