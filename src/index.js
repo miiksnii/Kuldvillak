@@ -3,9 +3,6 @@ import { createApp } from 'vue';  // Importing createApp from Vue
 import App from './App.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import Login from "./components/Login.vue";
-import SignIn from "./components/SignIn.vue";
-
 import Kuldvillak from './pages/Kuldvillak.vue';
 import HomePage from './pages/HomePage.vue';
 import Credits from './pages/Credits.vue';
@@ -14,14 +11,7 @@ import Credits from './pages/Credits.vue';
 const routes = [
     { path: '/', component: HomePage, name: "HomePage" },
     { path: '/Credits', component: Credits, name: "Credits" },
-    { path: '/LogIn', component: Login, name: "Login" },
-    { path: '/SignIn', component: SignIn, name: "Sign in" },
-    {
-        path: '/kuldvillak',
-        component: Kuldvillak,
-        name: "kuldvillak",
-        meta: { requiresAuth: true }
-    }
+    { path: '/Kuldvillak', component: Kuldvillak, name: "Kuldvillak" }
 ];
 
 // Create the router instance
