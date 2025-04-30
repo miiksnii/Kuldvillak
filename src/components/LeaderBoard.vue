@@ -77,13 +77,13 @@ function triggerConfettiAtMouse(event, points) {
     }
     confetti({
       ...defaults,
-      particleCount: Math.min(points * 5, 200),
+      particleCount: (points * 2 / 100),
       origin: {
         x: event.clientX / window.innerWidth,
         y: event.clientY / window.innerHeight
       }
     })
-  }, 100)
+  }, 10)
 }
 
 function increasePoints(player, event) {
@@ -177,6 +177,8 @@ function handleEnterKey(index) {
 </template>
 
 <style scoped>
+
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -194,6 +196,7 @@ function handleEnterKey(index) {
   color: black;
   font-weight: bolder;
   font-size: larger;
+  cursor: default;
 }
 
 .player-name {
