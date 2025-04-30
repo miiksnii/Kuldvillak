@@ -146,7 +146,7 @@ function updateQuestion(updatedQuestion) {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
-  max-height: 4%;
+  max-height: 3em;
 }
 
 .add_new_question_table:hover {
