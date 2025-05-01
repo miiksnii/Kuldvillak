@@ -14,7 +14,7 @@ function goToCredits() {
 </script>
 
 <template>
-    <div class="hero-body">
+    <div class="hero-body hero">
         <div class="container has-text-centered">
             <h1 class="title is-size-1 has-text-weight-bold has-text-white">
                 Sinivillak
@@ -31,4 +31,15 @@ function goToCredits() {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(30%);
+}
+
+
+</style>

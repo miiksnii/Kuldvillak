@@ -28,8 +28,9 @@ function goToHome() {
                         <div class="media-content has-text-left">
                             <p class="title is-4">Martin Pruus</p>
                             <p class="subtitle is-6">@Mart1nPr</p>
-                            <a class="button is-link" href="https://github.com/Mart1nPr" target="_blank"><i
-                                    class="fab fa-github"></i> GitHub</a>
+                            <a class="button is-link" href="https://github.com/Mart1nPr" target="_blank">
+                                <i class="fab fa-github"></i><p class="ml-2">Github</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +50,7 @@ function goToHome() {
                             <p class="title is-4">Kaspar Bergert</p>
                             <p class="subtitle is-6">@MasterShifuCsgo</p>
                             <a class="button is-link" href="https://github.com/MasterShifuCsgo" target="_blank"><i
-                                    class="fab fa-github"></i>GitHub
+                                    class="fab fa-github"></i><p class="ml-2">Github</p>
                             </a>
                         </div>
                     </div>
@@ -70,7 +71,7 @@ function goToHome() {
                             <p class="title is-4">Tauri Tammela</p>
                             <p class="subtitle is-6">@markusmikk100</p>
                             <a class="button is-link" href="https://github.com/markusmikk100" target="_blank">
-                                <i class="fab fa-github"></i>GitHub
+                                <i class="fab fa-github"></i><p class="ml-2">Github</p>
                             </a>
                         </div>
                     </div>
