@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import DisplayKuldvillak from '../components/DisplayKuldvillak.vue';
 import LeaderBoard from '../components/LeaderBoard.vue';
 
@@ -98,6 +98,53 @@ function showPopup() {
     isVisible.value = false;
   }, 3000);  // Popup will disappear after 3 seconds
 }
+
+
+// Export handler
+function handleExport() {
+  const data = kuldvillak_data.value;
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kuldvillak_export.json';
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+// Import handler
+function handleImport() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const imported = JSON.parse(reader.result);
+        if (Array.isArray(imported)) {
+          kuldvillak_data.value = imported;
+        } else {
+          alert('Invalid data format.');
+        }
+      } catch (err) {
+        alert('Failed to import JSON.');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+
+
+
+
 </script>
 
 
@@ -125,11 +172,10 @@ function showPopup() {
 
   <!-- Import & Export buttons -->
   <div class="buttons has-text-centered">
-      <button class="button is-primary has-text-white">Export</button>
-      <button class="button is-primary has-text-white">Import</button>
+      <button class="button is-primary has-text-white" @click="() => handleExport()">Export</button>
+      <button class="button is-primary has-text-white" @click="() => handleImport()">Import</button>
     </div>
 </template>
-
 
 <style scoped>
 .main-window {

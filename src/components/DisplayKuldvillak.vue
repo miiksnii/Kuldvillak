@@ -134,6 +134,12 @@ function updateQuestion(updatedQuestion) {
 
 <style scoped>
 
+.header.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align to top */
+}
+
 .add_new_question_table {
   display: inline-block;
   margin-top: 12px;
@@ -172,11 +178,11 @@ function updateQuestion(updatedQuestion) {
   user-select: none;
   color: white;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: column;  
   height: 10em;      /* fixed height for equal boxes */
   justify-content: center;
   overflow: hidden;   /* hide overflow if topic is too long */
+
 }
 
 .left-button {
@@ -184,7 +190,9 @@ function updateQuestion(updatedQuestion) {
   width: 50px;
   height: 30px;
   font-size: 18px;
-  padding: 5px;
+  padding: 5px;  
+  background-color: #0068df;
+  border-radius: 20%;
 }
 
 .header-text {
