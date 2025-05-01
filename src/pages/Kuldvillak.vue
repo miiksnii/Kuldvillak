@@ -69,14 +69,14 @@ function handlePoints(e) {
 // Function to create a new question table
 function createNewQuestionTable() {
   const newQuestionTable = {
-    id: generateUUID,
+    id: generateUUID(id++),
     topic: "New Topic",
     questionsList: [
-      { id: generateUUID, question: "enter question", answer: "create an answer" },
-      { id: generateUUID, question: "enter question", answer: "create an answer" },
-      { id: generateUUID, question: "enter question", answer: "create an answer" },
-      { id: generateUUID, question: "enter question", answer: "create an answer" },
-      { id: generateUUID, question: "enter question", answer: "create an answer" },
+      { id: generateUUID(id++), question: "enter question", answer: "create an answer" },
+      { id: generateUUID(id++), question: "enter question", answer: "create an answer" },
+      { id: generateUUID(id++), question: "enter question", answer: "create an answer" },
+      { id: generateUUID(id++), question: "enter question", answer: "create an answer" },
+      { id: generateUUID(id++), question: "enter question", answer: "create an answer" },
     ]
   };
 
