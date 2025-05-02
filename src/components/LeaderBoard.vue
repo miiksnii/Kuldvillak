@@ -176,16 +176,11 @@ function handleEnterKey(index) {
   </div>
 </template>
 
-<style scoped>
-
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  flex: auto;
-}
+<style scoped>  
 
 .box {
+  position: relative;
+  z-index: 1;
   padding: 1rem;
   margin: 0.5rem 0;
   border-radius: 8px;
@@ -197,7 +192,20 @@ function handleEnterKey(index) {
   font-weight: bolder;
   font-size: larger;
   cursor: default;
+  
 }
+
+.confetti-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 0;
+  pointer-events: none;
+}
+
 
 .player-name {
   margin-bottom: 10px;
