@@ -39,6 +39,10 @@ export default {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
+      {
+      test: /\.mp3$/,
+      type: 'asset/resource', // this will handle .mp3 files as resources
+      },
     ],
   },
   plugins: [
