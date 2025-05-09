@@ -14,8 +14,6 @@ function generateUUID(uniqueSeed) {
   }) + seed; // Append the uniqueSeed to ensure uniqueness
 }
 
-
-
 // Playerlist
 const players = ref([]);
 
@@ -63,7 +61,7 @@ const kuldvillak_data = ref([
 // Function to handle points
 function handlePoints(e) {
   pointsToAdd.value = e;
-  showPopup();  // Show the popup when points are added
+  // showPopup();  // Show the popup when points are added
 }
 
 // Function to create a new question table
@@ -79,26 +77,25 @@ function createNewQuestionTable() {
       { id: generateUUID(id++), question: "enter question", answer: "create an answer" },
     ]
   };
-
   // Update the data by re-assigning the ref
   kuldvillak_data.value = [...kuldvillak_data.value, newQuestionTable];
 }
 
+// Function to delete a table
 function removeQuestionTable(givenIndex) {
   console.log(givenIndex);
   kuldvillak_data.value = kuldvillak_data.value.filter((table, index) => index !== givenIndex);
 }
 
 // Popup Logic
-const isVisible = ref(false);
-
-function showPopup() {
-  isVisible.value = true;
-  setTimeout(() => {
-    isVisible.value = false;
-  }, 3000);  // Popup will disappear after 3 seconds
-}
-
+// const isVisible = ref(false);
+// 
+// function showPopup() {
+//   isVisible.value = true;
+//   setTimeout(() => {
+//     isVisible.value = false;
+//   }, 3000);  // Popup will disappear after 3 seconds
+// }
 
 // Export handler
 function handleExport() {
@@ -140,13 +137,7 @@ function handleImport() {
   };
   input.click();
 }
-
-
-
-
-
 </script>
-
 
 <template>
   <div class="main-window columns is-multiline">
@@ -172,9 +163,9 @@ function handleImport() {
 
   <!-- Import & Export buttons -->
   <div class="buttons has-text-centered">
-      <button class="button is-primary has-text-white" @click="() => handleExport()">Export</button>
-      <button class="button is-primary has-text-white" @click="() => handleImport()">Import</button>
-    </div>
+    <button class="button is-primary has-text-white" @click="() => handleExport()">Export</button>
+    <button class="button is-primary has-text-white" @click="() => handleImport()">Import</button>
+  </div>
 </template>
 
 <style scoped>
