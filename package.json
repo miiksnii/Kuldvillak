@@ -20,6 +20,7 @@
   "homepage": "https://github.com/miiksnii/Kuldvillak#readme",
   "description": "Kuldvillak by Kaspar Bergert and Martin P",
   "devDependencies": {
+    "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",

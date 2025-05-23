@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,16 +15,23 @@ export default {
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'), // Serve only the built files
-      serveIndex: false, // Disable directory listing
-    },
+    static: [
+      {
+        directory: path.join(__dirname, 'dist'), // Serve built files
+        serveIndex: false,
+      },
+      {
+        directory: path.join(__dirname, 'src/public'), // Serve static assets like favicon
+        publicPath: '/', // Serve these files at root path
+        serveIndex: false,
+      },
+    ],
     compress: true,
     port: 9000,
     hot: true,
     open: true,
-    watchFiles: ['src/**/*'], // Watch for changes in src, but don't serve it
-    historyApiFallback: true, // Prevents path-based traversal in SPAs
+    watchFiles: ['src/**/*'],
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -40,16 +48,22 @@ export default {
         loader: 'vue-loader',
       },
       {
-      test: /\.mp3$/,
-      type: 'asset/resource', // this will handle .mp3 files as resources
+        test: /\.mp3$/,
+        type: 'asset/resource',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html', // Ensure this path is correct
+      template: './src/public/index.html',
     }),
-    new VueLoaderPlugin(), // Moved inside the single plugins array
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/public/favicon-32x32.png', to: '' },
+      ],
+    }),
+
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],
