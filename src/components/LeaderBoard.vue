@@ -68,7 +68,7 @@ watch(
 
 function triggerConfettiAtMouse(event, points) {
   const duration = 1000 
-  const end = Date.now() + duration + points * 2
+  const end = Date.now() + duration + points * 0.05
   const defaults = { startVelocity: 15, spread: 90, ticks: 60, zIndex: 10 }
 
   const interval = setInterval(() => {
@@ -77,7 +77,7 @@ function triggerConfettiAtMouse(event, points) {
     }
     confetti({
       ...defaults,
-      particleCount: (points * 2 / 100),
+      particleCount: (points / 100),
       origin: {
         x: event.clientX / window.innerWidth,
         y: event.clientY / window.innerHeight

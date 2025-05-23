@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import QuizModal from './QuizModal.vue'
+import soundFile from '../assets/answering.mp3';
+
 
 const props = defineProps({
   kuldvillak_data: {
@@ -67,6 +69,9 @@ function closeModal(active) {
 function updateQuestion(updatedQuestion) {
   emit('updateQuestion', updatedQuestion)
 }
+
+var audio = new Audio(soundFile);
+
 </script>
 
 <template>
@@ -87,6 +92,10 @@ function updateQuestion(updatedQuestion) {
         <div v-for="(question, qIndex) in category.questionsList" :key="question.id"
           class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
           :class="{ 'is-answered': isAnswered.includes(question.id) }" @click="onQuestionClick(question, qIndex)">
+          :class="{ 'is-answered': isAnswered.includes(question.id) }"
+          @click="onQuestionClick(question, qIndex)
+          audio.play();"
+          >
           <p>${{ (qIndex + 1) * 100 }}</p>
         </div>
       </div>
