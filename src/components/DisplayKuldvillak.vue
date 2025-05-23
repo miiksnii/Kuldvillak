@@ -1,5 +1,3 @@
-
-
 <script setup>
 import { ref } from 'vue'
 import QuizModal from './QuizModal.vue'
@@ -73,71 +71,43 @@ function updateQuestion(updatedQuestion) {
 
 <template>
   <div class="columns">
-    <div
-      class="column kuldvillak-data question_table"
-      v-for="(category, catIndex) in kuldvillak_data"
-      :key="category.id"
-    >
+    <div class="column kuldvillak-data question_table" v-for="(category, catIndex) in kuldvillak_data"
+      :key="category.id">
       <div class="header box">
-        <button
-          class="remove-table left-button"
-          @click="removeQuestionTable(catIndex)"
-        >–</button>
+        <button class="remove-table left-button" @click="removeQuestionTable(catIndex)">–</button>
 
-        <p
-          v-if="!category.isEditingTopic"
-          class="header-text is-text-center  is-size-4"
-          @click="editTopic(category)"
-        >
+        <p v-if="!category.isEditingTopic" class="header-text is-text-center  is-size-4" @click="editTopic(category)">
           {{ category.topic }}
         </p>
-        <input
-          v-else
-          type="text"
-          v-model="category.topic"
-          class="header-text is-text-center my-2 py-2 py-5 is-size-4"
-          @blur="saveTopic(category)"
-          @keyup.enter="saveTopic(category)"
-        />
+        <input v-else type="text" v-model="category.topic" class="header-text is-text-center my-2 py-2 py-5 is-size-4"
+          @blur="saveTopic(category)" @keyup.enter="saveTopic(category)" />
       </div>
 
       <div class="numbered-cards">
-        <div
-          v-for="(question, qIndex) in category.questionsList"
-          :key="question.id"
+        <div v-for="(question, qIndex) in category.questionsList" :key="question.id"
           class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
-          :class="{ 'is-answered': isAnswered.includes(question.id) }"
-          @click="onQuestionClick(question, qIndex)"
-        >
+          :class="{ 'is-answered': isAnswered.includes(question.id) }" @click="onQuestionClick(question, qIndex)">
           <p>${{ (qIndex + 1) * 100 }}</p>
         </div>
       </div>
     </div>
 
-    <button
-  class="add_new_question_table"
-  @click="createNewQuestionTable()"
->
-  + Add Table
-</button>
+    <button class="add_new_question_table" @click="createNewQuestionTable()">
+      + Add Table
+    </button>
 
   </div>
 
-  <QuizModal
-    :ModalQuestion="ModalQuestion"
-    :active="isModalActive"
-    @questionId="markAnswered"
-    @isModalActive="closeModal"
-    @updateQuestion="updateQuestion"
-  />
+  <QuizModal :ModalQuestion="ModalQuestion" :active="isModalActive" @questionId="markAnswered"
+    @isModalActive="closeModal" @updateQuestion="updateQuestion" />
 </template>
 
 <style scoped>
-
 .header.box {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align to top */
+  justify-content: flex-start;
+  /* Align to top */
 }
 
 .add_new_question_table {
@@ -178,10 +148,12 @@ function updateQuestion(updatedQuestion) {
   user-select: none;
   color: white;
   display: flex;
-  flex-direction: column;  
-  height: 10em;      /* fixed height for equal boxes */
+  flex-direction: column;
+  height: 10em;
+  /* fixed height for equal boxes */
   justify-content: center;
-  overflow: hidden;   /* hide overflow if topic is too long */
+  overflow: hidden;
+  /* hide overflow if topic is too long */
 
 }
 
@@ -190,13 +162,13 @@ function updateQuestion(updatedQuestion) {
   width: 50px;
   height: 30px;
   font-size: 18px;
-  padding: 5px;  
+  padding: 5px;
   background-color: #0068df;
   border-radius: 20%;
 }
 
 .header-text {
-  width: 100%;  
+  width: 100%;
 }
 
 .numbered-card {
@@ -222,7 +194,8 @@ function updateQuestion(updatedQuestion) {
 
 .columns {
   height: calc(100vh - 450px);
-  align-items: stretch; /* ensure equal-height columns */
+  align-items: stretch;
+  /* ensure equal-height columns */
 }
 
 .kuldvillak-data {

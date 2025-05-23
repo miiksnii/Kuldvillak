@@ -142,6 +142,27 @@ function handleImport() {
 }
 
 
+// 1. find the similar id in kuldvillak_data
+// 2. replace the obj with the new question
+function updateQuestion(updatedQuestion) {
+
+  console.log(updatedQuestion);
+
+  // Loop through the kuldvillak_data to find the topic and the specific question to update
+  kuldvillak_data.value = kuldvillak_data.value.map(table => {
+    // Check if this table contains the question by matching the `id`
+    if (table.questionsList) {
+      table.questionsList = table.questionsList.map(question => {
+        // If the question's id matches, replace it with the updated one
+        if (question.id === updatedQuestion.id) {
+          return updatedQuestion; // Return the updated question
+        }
+        return question; // Otherwise, keep the current question
+      });
+    }
+    return table; // Return the table with the updated question
+  });
+}
 
 
 
@@ -158,7 +179,8 @@ function handleImport() {
     <!-- Kuldvillak section -->
     <div class="column" style="height: fit-content;">
       <DisplayKuldvillak :kuldvillak_data="kuldvillak_data" @createNewQuestionTable="createNewQuestionTable"
-        @PointsForUser="handlePoints" @removeQuestionTable="(index) => removeQuestionTable(index)" />
+        @PointsForUser="handlePoints" @removeQuestionTable="(index) => removeQuestionTable(index)"
+        @updateQuestion="e => updateQuestion(e)" />
     </div>
 
     <!-- Popup Notification -->
@@ -172,9 +194,9 @@ function handleImport() {
 
   <!-- Import & Export buttons -->
   <div class="buttons has-text-centered">
-      <button class="button is-primary has-text-white" @click="() => handleExport()">Export</button>
-      <button class="button is-primary has-text-white" @click="() => handleImport()">Import</button>
-    </div>
+    <button class="button is-primary has-text-white" @click="() => handleExport()">Export</button>
+    <button class="button is-primary has-text-white" @click="() => handleImport()">Import</button>
+  </div>
 </template>
 
 <style scoped>

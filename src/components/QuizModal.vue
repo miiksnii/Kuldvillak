@@ -34,7 +34,7 @@ function startEditingQuestion() {
     isEditingQuestion.value = true;
 }
 
-function saveQuestion() {
+function updateCell() {
     isEditingQuestion.value = false;
     // Emit the updated question to the parent
     emit('updateQuestion', { ...localQuestion });
@@ -44,11 +44,6 @@ function startEditingAnswer() {
     isEditingAnswer.value = true;
 }
 
-function saveAnswer() {
-    isEditingAnswer.value = false;
-    // Emit the updated question to the parent
-    emit('updateQuestion', { ...localQuestion });
-}
 
 function closeModal() {
     emit('isModalActive', false);
@@ -87,7 +82,7 @@ function closeModal() {
             <div v-else class="editing-container">
                 <textarea v-model="localQuestion.question" class="textarea is-size-3 m-2 p-3" rows="3"></textarea>
                 <div class="buttons-container">
-                    <button @click="saveQuestion" class="save-button">Save</button>
+                    <button @click="updateCell" class="save-button">Save</button>
                 </div>
             </div>
         </template>
@@ -102,7 +97,7 @@ function closeModal() {
                 <div v-else class="editing-container">
                     <textarea v-model="localQuestion.answer" class="textarea is-size-3 m-2 p-3" rows="2"></textarea>
                     <div class="buttons-container">
-                        <button @click="saveAnswer" class="save-button">Save</button>
+                        <button @click="updateCell" class="save-button">Save</button>
                     </div>
                 </div>
             </div>
