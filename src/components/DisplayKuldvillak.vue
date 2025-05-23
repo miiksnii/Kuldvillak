@@ -92,10 +92,6 @@ var audio = new Audio(soundFile);
         <div v-for="(question, qIndex) in category.questionsList" :key="question.id"
           class="numbered-card is-size-2 is-text-center my-2 py-2 py-5"
           :class="{ 'is-answered': isAnswered.includes(question.id) }" @click="onQuestionClick(question, qIndex)">
-          :class="{ 'is-answered': isAnswered.includes(question.id) }"
-          @click="onQuestionClick(question, qIndex)
-          audio.play();"
-          >
           <p>${{ (qIndex + 1) * 100 }}</p>
         </div>
       </div>
