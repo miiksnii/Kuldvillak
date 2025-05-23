@@ -17,12 +17,12 @@ export default {
   devServer: {
     static: [
       {
-        directory: path.join(__dirname, 'dist'), // Serve built files
+        directory: path.join(__dirname, 'dist'),
         serveIndex: false,
       },
       {
-        directory: path.join(__dirname, 'src/public'), // Serve static assets like favicon
-        publicPath: '/', // Serve these files at root path
+        directory: path.join(__dirname, 'src/public'),
+        publicPath: '/',
         serveIndex: false,
       },
     ],
@@ -60,7 +60,7 @@ export default {
     new VueLoaderPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/public/favicon-32x32.png', to: '' },
+        { from: 'src/public/favicon.png', to: '' },
       ],
     }),
 
