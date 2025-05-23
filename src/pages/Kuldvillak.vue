@@ -196,9 +196,6 @@ function updateQuestion(updatedQuestion) {
     <button class="button is-primary has-text-white" @click="() => handleExport()">Export</button>
     <button class="button is-primary has-text-white" @click="() => handleImport()">Import</button>
   </div>
-  <button class="button is-primary has-text-white" @click="() => handleExport()">Export</button>
-  <button class="button is-primary has-text-white" @click="() => handleImport()">Import</button>
-  </div>
 </template>
 
 <style scoped>
